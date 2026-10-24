@@ -1,0 +1,17 @@
+ASIC-Skill Digital Electronics · 19 units · GitHub upload edition
+
+This upload package contains only the static website assets. The original external CSS/JS
+files are embedded into their referring HTML pages, preserving page-specific execution order.
+The 1080p microprocessor video and logo are included.
+
+Upload all files and the digital-electronics-assets folder to your GitHub Pages branch/root.
+For Project Pages, use relative paths and test under the project base path.
+External CDN scripts and configured Supabase/Cloudflare endpoints still require connectivity.
+EDA server-side simulations, account APIs, and paid lesson services require separately
+deployed backends; GitHub Pages cannot host Python/Docker/Cloudflare Worker runtimes.
+
+README* documents remain available in the separate README archive (not this upload).
+The EDA server and deploy/config files are in the separate Backend-and-Setup archive.
+
+Note: GitHub browser upload allows at most 100 files per upload operation, not
+100 files per repository. Git push is an alternative for a full source repository.

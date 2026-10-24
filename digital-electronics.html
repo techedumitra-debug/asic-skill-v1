@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><meta content="ASIC-Skill Digital Electronics Unit 01: learn with interactive waveforms, logic tables, HDL, and self-check quizzes" name="description"/><title>Unit 01 Introduction to Digital Electronics | ASIC-Skill</title><style data-bundled-from="digital-electronics.css">
+:root{--ink:#152a3c;--muted:#577080;--orange:#e87918;--green:#087858;--teal:#047a85;--line:#d9e4e5;--bg:#f4f8f7;--paper:#fff;--soft:#eef7f2;--shadow:0 10px 34px rgba(18,43,61,.09);--lesson-font:17px;color-scheme:light}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;font-size:15px;line-height:1.68}a{color:var(--green);text-decoration:none}a:hover{text-decoration:underline}button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #ed9928;outline-offset:3px}button:disabled{opacity:.42;cursor:not-allowed}body.dark{--ink:#e8f4f5;--muted:#9bb7bd;--orange:#ffab55;--green:#74ddb1;--teal:#4bc5d0;--line:#355461;--bg:#0c202a;--paper:#18303b;--soft:#203a3c;--shadow:0 10px 34px rgba(0,0,0,.2);color-scheme:dark}
+.de-topbar{background:#102c3d;color:white;min-height:72px;display:flex;align-items:center;justify-content:space-between;padding:9px clamp(16px,4vw,52px);gap:15px}.de-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff}.de-brand:hover{text-decoration:none}.de-brand img{height:44px;width:44px;object-fit:cover;border-radius:12px}.de-brand b{font-size:21px;line-height:1.15}.de-brand small{display:block;letter-spacing:.07em;font-size:10px;text-transform:uppercase;color:#bbd1d1}.de-brand-orange{color:#ff9237}.de-head-links{display:flex;gap:9px;align-items:center}.de-head-links a{color:#e5f6f5;font-size:13px;margin-right:9px}.de-top-btn{border:1px solid #53707c;color:#fff;background:transparent;border-radius:9px;min-width:38px;height:37px}.de-top-btn:hover{background:#254c5c}.de-breadcrumb{display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding:10px clamp(18px,4vw,52px);font-size:12px;background:var(--paper);border-bottom:1px solid var(--line);color:var(--muted)}.de-breadcrumb strong{color:var(--ink);font-weight:600}
+.de-shell{display:grid;grid-template-columns:284px minmax(0,1fr);max-width:1540px;margin:auto;min-height:calc(100vh - 114px)}.de-sidebar{height:calc(100vh - 112px);position:sticky;top:0;background:var(--paper);border-right:1px solid var(--line);display:flex;flex-direction:column;min-height:0;z-index:5}.de-side-top{padding:22px 20px 16px;border-bottom:1px solid var(--line)}.de-course-label{font-size:10px;font-weight:800;letter-spacing:.18em;color:var(--green)}.de-side-top h2{margin:6px 0 0;font-size:25px;letter-spacing:-.04em}.de-side-top p{font-size:13px;color:var(--muted);margin:0 0 17px}.de-progress-bar{height:8px;background:var(--line);border-radius:99px;overflow:hidden}.de-progress-bar span{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--green),var(--orange));transition:width .25s}.de-progress-text{font-size:12px;color:var(--muted);margin:7px 0 16px}.de-search-label{display:block;font-size:11px;font-weight:700;margin:5px 0}.de-side-top input{width:100%;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:9px 11px;border-radius:9px;font-size:13px}.de-sidenav{overflow:auto;padding:10px 9px;flex:1}.de-nav-item{display:flex;gap:10px;align-items:center;width:100%;border:none;border-radius:10px;background:transparent;color:var(--muted);padding:10px 10px;text-align:left;line-height:1.35;font-size:12.5px;margin:2px 0;min-height:44px}.de-nav-item:hover{background:var(--soft);color:var(--ink)}.de-nav-item.active{background:var(--soft);color:var(--green);font-weight:750;border-left:3px solid var(--green)}.de-nav-index{font-size:10px;font-weight:800;opacity:.65;min-width:22px}.de-done-mark{color:var(--green);margin-left:auto}.de-side-bottom{padding:14px 17px;border-top:1px solid var(--line);font-size:12px}
+.de-main{padding:0 clamp(17px,3.5vw,54px);min-width:0}.de-content-top{max-width:990px;margin:auto;display:flex;gap:16px;align-items:center;justify-content:space-between;padding:26px 0 16px;color:var(--muted);font-size:11px;letter-spacing:.12em;font-weight:750}.de-menu{display:none;padding:7px 11px;border-radius:8px;background:var(--paper);border:1px solid var(--line);color:var(--ink)}.de-study-panel{max-width:990px;margin:auto;background:var(--paper);box-shadow:var(--shadow);border:1px solid var(--line);border-radius:17px;min-height:66vh;padding:clamp(22px,4.4vw,57px)}.de-kicker{font-weight:800;font-size:11px;letter-spacing:.12em;color:var(--green);text-transform:uppercase;margin-bottom:9px}.de-lesson h1{font-size:clamp(27px,3.1vw,39px);line-height:1.18;letter-spacing:-.035em;margin:0 0 27px}.de-content{font-size:var(--lesson-font);line-height:1.8}.de-content>p:first-child{font-size:1.04em}.de-content h2{font-size:1.35em;line-height:1.3}.de-content h3{font-size:1.1em;margin:30px 0 12px;letter-spacing:-.015em}.de-content ul{padding-left:22px}.de-content li{margin:7px 0}.de-content code{font-size:.89em;background:var(--soft);padding:2px 4px;border-radius:4px}.de-content table{width:100%;border-collapse:collapse;margin:24px 0;font-size:.83em;min-width:520px}.de-content table th{background:#126d59;color:#fff;font-weight:700;text-align:left}.de-content table td,.de-content table th{padding:11px 13px;border:1px solid var(--line);vertical-align:top}.de-content table tbody tr:nth-child(even){background:var(--soft)}.de-table-wrap{overflow:auto}.de-content:has(>table){overflow-wrap:anywhere}.de-content>table{display:block;overflow-x:auto}.de-hero{background:linear-gradient(115deg,#142d42,#17615a);border-radius:18px;padding:clamp(22px,5vw,42px);color:#fff}.de-hero h2{font-size:clamp(24px,3vw,35px);max-width:660px;line-height:1.18;letter-spacing:-.03em;margin:12px 0 14px}.de-hero p{color:#e4f6f2}.de-pill{border:1px solid #8dcfc4;border-radius:99px;padding:6px 11px;font-size:11px;letter-spacing:.05em}.de-hero-stats{display:flex;gap:15px;flex-wrap:wrap;margin-top:20px}.de-hero-stats span{border:1px solid #7199a4;background:#20485b;border-radius:9px;font-size:12px;padding:10px 15px}.de-hero-stats strong{color:#ffad62;font-size:23px;margin-right:5px}.de-two,.de-three{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:24px 0}.de-three{grid-template-columns:repeat(3,minmax(0,1fr))}.de-panel,.de-three article{padding:17px;background:var(--soft);border:1px solid var(--line);border-radius:12px}.de-panel h3{margin:0 0 8px;font-size:1em}.de-panel p,.de-three p{font-size:.9em;margin:9px 0}.de-three b{color:var(--green)}.de-note{padding:15px 18px;border-left:4px solid var(--orange);background:color-mix(in srgb,var(--orange) 9%,var(--paper));border-radius:0 9px 9px 0;font-size:.9em;margin:22px 0}.de-equation{font-size:1.15em;font-weight:750;color:var(--green)}
+.de-demo{background:var(--soft);border:1px solid var(--line);padding:clamp(16px,3vw,24px);border-radius:14px;margin:24px 0}.de-demo-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}.de-demo-head strong{color:var(--ink);font-size:1em}.de-demo-head span{font-size:.68em;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:var(--green)}.de-controls{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:14px}.de-controls label{display:flex;flex-direction:column;gap:8px;min-width:160px;flex:1;font-weight:750;font-size:.78em;color:var(--ink)}.de-controls output{color:var(--green);font-weight:800}.de-controls input[type=range]{width:100%;accent-color:#159877}.de-controls select,.de-controls input:not([type=range]){border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:9px;padding:9px}.de-demo svg{max-width:100%;display:block}.de-result{color:var(--green);font-size:.88em;font-weight:650;margin:10px 0 0}.de-control-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.de-button{border:1px solid transparent;background:#10785e;color:#fff;padding:10px 15px;border-radius:9px;font-size:.77em;font-weight:780;transition:transform .1s}.de-button:hover{transform:translateY(-1px);background:#0c5d4c}.de-button.alt{background:var(--paper);border-color:var(--line);color:var(--ink)}.de-button.alt:hover{background:var(--soft)}.de-bit-flow,.de-block-flow{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;margin:22px 0}.de-bit-flow>span,.de-block-flow>span{border:1px solid var(--line);border-radius:12px;padding:12px 15px;background:var(--paper);text-align:center;font-size:.85em}.de-bit-flow b{font-size:1.6em;color:var(--green);padding:0 4px}.de-block-flow b{color:var(--orange)}.de-bit-flow .de-chip{background:#17645a;color:white;border-color:#17645a;font-weight:800}.de-voltage{display:flex;overflow:hidden;border:1px solid var(--line);border-radius:9px;max-width:680px;text-align:center;color:#172d3c;font-weight:760;font-size:.67em}.de-voltage>div{padding:12px 6px}.de-low{width:16%;background:#91d6d6}.de-mid{width:24%;background:#ffe1b4}.de-high{width:60%;background:#b1dfb9}.de-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:10px;margin:16px 0}.de-metric{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:5px;font-size:.67em;color:var(--muted)}.de-metric strong{font-size:1.55em;color:var(--ink)}.de-diagram-box{margin:20px 0;overflow-x:auto}.de-diagram-box svg{min-width:420px;max-width:100%;width:100%;color:var(--green)}.de-svg-boxes rect{fill:var(--soft);stroke:var(--green);stroke-width:2}.de-svg-lines path{fill:none;stroke:var(--orange);stroke-width:2.4}.de-svg-text text{font-size:14px;fill:var(--ink);text-anchor:middle;dominant-baseline:central;font-weight:650}.de-caption{font-size:.74em;color:var(--muted)}.de-switch-row{display:flex;flex-wrap:wrap;gap:9px}.de-switch-row button{padding:7px 10px}.de-register{display:flex;justify-content:center;gap:9px;margin:20px 0}.de-register span,.de-tx-bit{display:inline-flex;align-items:center;justify-content:center;width:45px;height:45px;border:2px solid var(--green);border-radius:10px;background:var(--paper);color:var(--ink);font-family:ui-monospace,monospace;font-weight:800}.de-tx-lines{margin:15px 0;display:flex;gap:10px;flex-wrap:wrap;align-items:center}.de-tx-lines strong{min-width:82px;font-size:.75em}.de-tx-lines .de-tx-bit{width:35px;height:35px;font-size:.75em}.de-tx-line{border-top:3px solid var(--teal);width:35px}.de-reveal{margin:22px 0;border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:var(--paper);font-size:.9em}.de-reveal summary{font-weight:760;color:var(--green);cursor:pointer}.de-reveal p{margin-bottom:0}.de-code-panel{margin:0 0 20px;border:1px solid var(--line);border-radius:0 10px 10px 10px;overflow:hidden}.de-tabs{display:flex;gap:3px;margin-top:20px}.de-code-tab{padding:10px 17px;background:var(--soft);color:var(--ink);border:1px solid var(--line);border-radius:8px 8px 0 0;font-weight:750;font-size:.75em}.de-code-tab.active{background:#173a4c;color:white}.de-code-head{display:flex;justify-content:space-between;gap:10px;align-items:center;background:#12313f;color:#e8f9fa;font-size:.75em;padding:10px 15px}.de-copy{border:1px solid #76979a;background:transparent;color:white;border-radius:8px;padding:4px 11px;font-size:11px}.de-code-panel pre{white-space:pre;overflow:auto;background:#122431;color:#d7f6e6;margin:0;padding:18px;font:13px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace}.de-code-panel code{background:none;padding:0;color:inherit}.de-quiz-head{display:flex;justify-content:space-between;font-size:.76em;color:var(--muted);font-weight:780}.de-question{background:var(--paper);padding:16px;margin:14px 0;border-radius:10px;border:1px solid var(--line)}.de-question h3{margin:0 0 10px;font-size:.89em;line-height:1.4}.de-question label{display:flex;align-items:flex-start;gap:9px;padding:6px;cursor:pointer;font-size:.78em;font-weight:500}.de-question input{accent-color:#0d886b;margin-top:7px}.de-feedback{padding:9px;border-radius:9px;margin-top:8px;font-size:.75em}.de-feedback.right{background:#d6f5e7;color:#14553a}.de-feedback.wrong{background:#ffe8d8;color:#85411c}.de-lesson-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;border-top:1px solid var(--line);margin:45px 0 0;padding-top:24px}.de-footer{max-width:990px;margin:25px auto;padding-bottom:22px;text-align:center;color:var(--muted);font-size:11px}
+@media(max-width:1080px){.de-shell{grid-template-columns:256px minmax(0,1fr)}.de-study-panel{padding:30px}.de-three{grid-template-columns:1fr}.de-two{grid-template-columns:1fr}}@media(max-width:780px){.de-topbar{padding:9px 16px}.de-head-links{gap:4px}.de-head-links a{display:none}.de-breadcrumb{padding:10px 15px;gap:6px}.de-breadcrumb strong{font-size:11px}.de-shell{display:block}.de-sidebar{position:fixed;top:0;left:0;bottom:0;height:100dvh;width:min(330px,88vw);transform:translateX(-105%);box-shadow:var(--shadow);transition:transform .25s;z-index:20}.de-sidebar.show{transform:translateX(0)}.de-sidebar-overlay{position:fixed;inset:0;background:#0009;z-index:19}.de-sidebar-overlay:not([hidden]){display:block}.de-menu{display:inline-flex}.de-main{padding:0 12px}.de-content-top{padding:13px 3px}.de-route{display:none}.de-study-panel{padding:24px 17px;border-radius:12px}.de-lesson h1{font-size:27px}.de-lesson-actions{justify-content:center}.de-content table{min-width:470px}.de-content>table{max-width:100%}.de-demo{padding:13px}.de-controls{flex-direction:column}.de-controls label{min-width:0}.de-hero-stats span{flex:1}.de-bit-flow>span{padding:7px 9px}.de-block-flow{gap:6px}.de-block-flow>span{padding:6px 8px}.de-hero{padding:20px}.de-hero h2{font-size:24px}}@media(max-width:390px){.de-top-btn{min-width:30px;height:32px}.de-brand b{font-size:17px}.de-brand img{height:36px;width:36px}.de-content{font-size:16px}.de-study-panel{padding:19px 13px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+.de-visual-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:18px 0}.de-visual-grid-wide{grid-template-columns:minmax(0,1.35fr) minmax(0,.95fr)}.de-figure-card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px;min-width:0}.de-mini-title{margin:0 0 10px;font-size:.95em;color:var(--ink)}.de-symbol-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px}.de-symbol-card{border:1px solid var(--line);border-radius:12px;padding:10px;background:var(--soft);display:flex;flex-direction:column;align-items:center;gap:6px}.de-symbol-card svg{width:100%;height:72px}.de-symbol-card span{font-size:.75em;font-weight:700;color:var(--ink)}.de-dff-row-active{background:color-mix(in srgb,var(--orange) 16%,var(--paper))!important;font-weight:800}.de-io-on{fill:#148f7b!important;color:#148f7b!important}.de-io-off{fill:#dce8e4!important;color:#728590!important}.de-svg-label{font-size:16px;fill:var(--ink);font-weight:700}.de-svg-small{font-size:12px;fill:var(--muted);font-weight:600}.de-svg-wire{stroke:#137f6c;stroke-width:4;fill:none;stroke-linecap:round;stroke-linejoin:round}.de-svg-outline{stroke:#152a3c;stroke-width:3.2;fill:var(--paper);stroke-linecap:round;stroke-linejoin:round}.de-svg-fill-soft{fill:var(--soft);stroke:var(--line);stroke-width:1.6}.de-svg-accent{fill:#ecf7f0;stroke:#137f6c;stroke-width:2}.de-svg-active{stroke:#e87918!important;fill:#fff7ec!important}.de-svg-active-fill{fill:#e87918!important;color:#e87918!important}.de-svg-dot{stroke:#152a3c;stroke-width:2;fill:var(--paper)}
+@media(max-width:780px){.de-visual-grid,.de-visual-grid-wide{grid-template-columns:1fr}.de-symbol-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}/* v37.0.63 – pin-connected circuits & accessible lesson layouts */
+.de-figure-full{margin:15px 0 20px;overflow-x:auto;overflow-y:hidden}
+.de-figure-full svg{width:100%;height:auto;display:block}
+.de-figure-card{overflow-x:auto}
+.de-figure-card table{min-width:0;width:100%;font-size:.78em;margin:8px 0}
+.de-figure-card table th,.de-figure-card table td{padding:9px 10px;white-space:nowrap;text-align:center}
+.de-svg-wire{stroke:#137f6c;stroke-width:4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.de-svg-active{stroke:#de7b21!important}
+.de-svg-outline{stroke:var(--ink);fill:var(--paper);stroke-width:3.5;stroke-linejoin:round}
+.de-svg-pin{stroke:var(--ink);fill:none;stroke-width:3.5;stroke-linejoin:round;stroke-linecap:round}
+.de-svg-fill-soft{fill:var(--soft);stroke:var(--line);stroke-width:1.6}
+.de-svg-label{fill:var(--ink);font-size:19px;font-weight:700}
+.de-svg-title{fill:var(--ink);font-size:23px;font-weight:850}
+.de-svg-small{fill:var(--muted);font-size:15px;font-weight:600}
+.de-io-on{fill:#148c77;stroke:#148c77;stroke-width:2}
+.de-io-off{fill:#dae8e3;stroke:#c4d7d1;stroke-width:2}
+.de-value-label{font-size:20px;font-weight:900;fill:var(--ink)}
+.de-svg-wave-data{stroke:#d77419;stroke-width:4.5;fill:none;stroke-linejoin:round}
+.de-svg-wave-clock{stroke:#087c68;stroke-width:2.8;fill:none;stroke-linejoin:round}
+.de-svg-guideline{stroke:var(--line);stroke-width:1;stroke-dasharray:4 7}
+.de-symbol-wire{fill:none;stroke:#137f6c;stroke-width:2.8;stroke-linecap:round}
+.de-symbol-body{stroke:var(--ink);fill:var(--paper);stroke-width:2.6}
+.de-symbol-pin{stroke:var(--ink);fill:none;stroke-width:2.3}
+.de-data-recap{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:12px;margin-top:15px}
+.de-data-recap .de-metric strong{font-size:1.07em;overflow-wrap:anywhere}
+@media(max-width:780px){.de-figure-full svg{min-width:580px}.de-figure-card table{font-size:12px}.de-figure-card table td,.de-figure-card table th{padding:7px 5px}.de-figure-card{padding:10px}}
+
+.de-native-illustration{margin:1rem 0 1.75rem;border-radius:15px;overflow:hidden;border:1px solid var(--line);background:var(--paper)}.de-native-illustration img{display:block;width:100%;height:auto;object-fit:contain}.de-native-illustration figcaption{padding:7px 15px;font-size:.76rem;color:var(--muted);background:var(--soft)}.de-demo>svg,.de-figure-card>svg{display:block;width:100%;height:auto;min-height:180px}.de-figure-card>svg{min-height:0}.de-demo svg text{paint-order:stroke fill}
+
+/* v37.0.65: uploaded course illustrations, responsive without canvas or JavaScript */
+.de-architecture-illustration{max-width:880px;margin-inline:auto}.de-schematic-illustration{width:100%;max-width:1142px;margin-inline:auto}.de-native-illustration img{max-width:100%;height:auto;display:block}.de-architecture-illustration img{max-width:862px;margin:auto;background:white}
+
+
+/* Unit 01 — selected illustrations, selectable learning notes, interactive block diagrams */
+.de-unit-graphic{margin:20px 0 14px}.de-unit-graphic img{display:block;width:100%;height:auto;object-fit:contain;max-height:none}.de-selectable-notes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin:18px 0}.de-selectable-notes article{border:1px solid var(--line);border-radius:12px;padding:17px 18px;background:var(--soft)}.de-selectable-notes h3{margin:0 0 10px;font-size:.95em;color:var(--green)}.de-selectable-notes p{font-size:.83em;line-height:1.65;margin:8px 0}.de-level-notes{grid-template-columns:repeat(3,minmax(0,1fr))}.de-inline-lab,.de-activity,.de-architecture-interactive{padding:18px;border:1px solid var(--line);border-radius:13px;margin:20px 0;background:var(--soft)}.de-inline-lab>p{font-size:.86em}.de-detail-panel{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--green);border-radius:10px;padding:14px 18px;margin:14px 0;font-size:.9em;line-height:1.65}.de-detail-panel h3{margin:0 0 8px!important}.de-detail-panel p{margin:7px 0}.de-level-btn[aria-pressed=true]{border-color:var(--green);background:var(--green);color:var(--paper)}.de-op-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;margin:15px 0}.de-op-tab{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:10px 6px;font-weight:750;font-size:.75em}.de-op-tab[aria-pressed=true]{background:#155f54;color:white;border-color:#155f54}.de-activity-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px}.de-activity-grid .de-figure-card{overflow:hidden}.de-live-results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.de-live-results>div{background:var(--soft);border:1px solid var(--line);border-radius:9px;padding:9px 11px;min-width:0}.de-live-results small{display:block;color:var(--muted);font-size:.77em}.de-live-results strong{overflow-wrap:anywhere;font-size:.88em;color:var(--ink)}.de-binary-strip{display:flex;gap:5px;flex-wrap:wrap;margin:9px 0}.de-binary-strip span{font:700 .95em ui-monospace,monospace;background:var(--soft);border:1px solid var(--line);padding:5px 9px;border-radius:6px}.de-step-list{padding-left:20px;font-size:.86em}.de-step-list li{margin:7px 0}.de-hotspot-canvas{position:relative;width:100%;aspect-ratio:862/640;max-width:862px;margin:auto}.de-hotspot-canvas img{display:block;width:100%;height:100%;object-fit:contain}.de-hotspot{position:absolute;left:var(--x);top:var(--y);width:var(--w);height:var(--h);background:transparent;border:2px solid transparent;border-radius:10px;color:transparent;z-index:2;cursor:pointer;transition:background .14s,border-color .14s}.de-hotspot span{position:absolute;top:2px;right:2px;font-size:10px;font-weight:800;background:#0b6657;color:white;padding:2px 5px;border-radius:5px;opacity:0;pointer-events:none}.de-hotspot:hover,.de-hotspot:focus-visible,.de-hotspot[aria-pressed=true]{border-color:#e87918;background:rgba(251,191,90,.13)}.de-hotspot:hover span,.de-hotspot:focus-visible span,.de-hotspot[aria-pressed=true] span{opacity:1}.de-hotspot-chips{display:flex;flex-wrap:wrap;gap:7px;margin:15px 0}.de-hotspot-chips button{background:var(--paper);border:1px solid var(--line);color:var(--ink);border-radius:99px;padding:7px 12px;font-size:.74em;font-weight:700}.de-hotspot-chips button[aria-pressed=true]{background:var(--green);color:var(--paper);border-color:var(--green)}.de-architecture-interactive .de-native-illustration{padding:8px}.de-architecture-interactive .de-native-table{overflow-x:auto}.de-architecture-interactive .de-native-table table{min-width:0}.de-architecture-interactive .de-detail-panel{min-height:135px}
+@media(max-width:850px){.de-level-notes{grid-template-columns:1fr}.de-op-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:700px){.de-selectable-notes,.de-activity-grid{grid-template-columns:1fr}.de-op-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.de-inline-lab,.de-activity,.de-architecture-interactive{padding:12px}.de-hotspot span{font-size:8px;padding:0 3px}.de-hotspot-chips{gap:5px}.de-hotspot-chips button{padding:6px 9px;font-size:11px}}/* v37.0.67: native selectable instructional figures, no raster lesson diagrams */
+.de-native-graph,.de-native-twocol,.de-native-levels,.de-storage-native,.de-computer-diagram{margin:22px 0}
+.de-native-graph{padding:17px;background:var(--soft);border:1px solid var(--line);border-radius:16px}
+.de-hybrid-grid{display:grid;grid-template-columns:minmax(0,1fr) 20px minmax(0,1fr) 20px minmax(0,1fr) 20px minmax(0,1fr) 20px minmax(0,1fr);align-items:stretch;gap:4px}
+.de-hybrid-node{display:flex;flex-direction:column;gap:4px;align-items:center;justify-content:center;min-width:0;min-height:110px;padding:11px 6px;border:1px solid var(--line);border-radius:12px;background:var(--paper);text-align:center;color:var(--ink)}
+.de-hybrid-node strong{font-size:.86em;line-height:1.2}.de-hybrid-node small{font-size:.63em;color:var(--muted)}.de-emoji{font-size:1.7em;color:var(--green)}.de-native-arrow{align-self:center;text-align:center;color:var(--orange);font-weight:900;font-size:1.3em}
+.de-native-twocol{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.de-signal-figure{min-width:0;padding:18px;background:var(--paper);border:1px solid var(--line);border-radius:15px}
+.de-signal-title{display:flex;align-items:center;gap:10px;background:#147257;color:#fff;border-radius:10px;padding:9px 12px;font-size:.86em}.de-figure-count{background:#ebfff2;color:#126448;border-radius:99px;display:inline-flex;width:26px;height:26px;align-items:center;justify-content:center;flex:none;font-weight:800}
+.de-signal-figure p{font-size:.81em;line-height:1.6;margin:12px 0}.de-inline-svg{width:100%;height:auto;min-width:0;display:block;color:var(--ink);overflow:visible;user-select:text}
+.de-graph-wave{stroke:#098566;stroke-width:3.5;fill:none;stroke-linejoin:round}.de-graph-path{stroke:var(--ink);stroke-width:2.7;fill:none;stroke-linejoin:round;stroke-linecap:round}.de-graph-output{stroke:#0b756a;stroke-width:4;fill:none;stroke-linejoin:round}.de-graph-accent{stroke:var(--orange);stroke-width:3.5;fill:none}.de-graph-dashed{stroke:var(--muted);stroke-width:1.4;fill:none;stroke-dasharray:4 4}.de-graph-block{stroke:var(--green);stroke-width:2.2;fill:var(--soft)}.de-svg-native-text{font-family:system-ui,sans-serif;font-size:13px;fill:var(--ink);font-weight:700;user-select:text}
+.de-handshake-diagram{display:grid;grid-template-columns:minmax(0,1fr) 62px minmax(0,1fr);gap:8px;align-items:center;margin:27px 0 35px}.de-handshake-box{padding:13px 7px;min-height:105px;text-align:center;border:2px solid #239c86;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--soft)}.de-handshake-box strong{font-size:.72em}.de-handshake-box small{font-size:.65em;color:var(--muted)}.de-handshake-signals{display:flex;flex-direction:column;gap:9px;text-align:center;font-weight:800;color:var(--green);font-size:.75em}
+.de-native-levels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.de-native-stage{border-radius:14px;border:1px solid var(--line);background:var(--paper);min-width:0;padding:15px}.de-native-stage header{border-radius:8px;background:#17856d;color:white;font-size:.83em;font-weight:800;padding:8px 10px}.de-stage-logic header{background:#236aab}.de-stage-circuit header{background:#ca771f}.de-native-stage p{font-size:.77em;line-height:1.5}.de-stage-flow{display:flex;gap:5px;align-items:center;justify-content:center;margin:22px 0;flex-wrap:wrap}.de-stage-flow span{border:1px solid #a5d7c7;background:var(--soft);border-radius:9px;padding:9px 8px;font-weight:700;text-align:center;font-size:.76em;max-width:100%}.de-stage-flow b{color:var(--orange)}.de-stage-flow .de-stage-center{border-color:var(--green);background:color-mix(in srgb,var(--green) 12%,var(--paper))}.de-stage-flow small{font-size:.7em}.de-native-acc-flow{border:1px solid var(--line);border-radius:14px;padding:16px;margin:18px 0;background:var(--soft);text-align:center}.de-native-acc-flow>p{font-size:.78em}
+.de-storage-native{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px 0}.de-storage-card{min-width:0;display:flex;flex-direction:column;background:var(--paper);padding:15px;border:1px solid var(--line);border-radius:14px}.de-storage-card h3{font-size:.95em;margin:0 0 8px!important;color:var(--ink)}.de-storage-card>p{font-size:.76em;line-height:1.6;margin:0 0 10px}.de-storage-card .de-caption{font-size:.73em;line-height:1.5;margin-top:auto}.de-shift-rail{display:flex;gap:4px;align-items:center;justify-content:center;flex-wrap:wrap;margin:22px 0}.de-input-label{font-size:.67em;font-weight:750}.de-shift-rail>span[aria-hidden]{color:var(--green);font-weight:800}.de-shift-cell{border:1.5px solid var(--green);border-radius:8px;display:flex;align-items:center;flex-direction:column;min-width:39px;padding:4px 3px;font-size:.75em;color:var(--ink)}.de-shift-cell strong{font-family:ui-monospace,monospace;font-size:1.35em}.de-native-clock{font-weight:750;text-align:center;font-size:.78em;color:var(--green);border-top:1px dotted var(--muted);padding-top:7px}.de-counter-cycle{display:flex;align-items:center;flex-wrap:wrap;gap:5px;justify-content:center;margin:24px 0 16px}.de-counter-cycle>span{font-weight:800;color:var(--green)}.de-state-cell{border:1.5px solid var(--green);border-radius:9px;background:var(--paper);color:var(--ink);padding:6px 5px;min-width:40px;font-weight:800;font-size:.78em;display:flex;align-items:center;flex-direction:column}.de-state-cell small{font-size:.83em;font-weight:500}.de-state-cell[aria-pressed=true]{background:#11785b;color:#fff}.de-storage-card svg{margin:10px 0}
+.de-video-module{margin:20px 0 26px;border:1px solid var(--line);border-radius:15px;background:var(--paper);padding:16px}.de-video-module h3{margin:0 0 14px}.de-video-module video{width:100%;height:auto;aspect-ratio:16/9;background:#101820;border-radius:10px;display:block}.de-video-module .de-caption{margin:11px 0 0}
+.de-computer-diagram{border:1px solid var(--line);background:var(--paper);padding:15px;border-radius:15px}
+.de-computer-diagram .de-hotspot{position:static;left:auto;top:auto;width:auto;height:auto;display:flex;align-items:center;justify-content:center;flex-direction:column;color:var(--ink);border:2px solid #64b99f;background:var(--soft);border-radius:10px;padding:10px;min-height:65px;font-weight:800;line-height:1.25;cursor:pointer}
+.de-computer-diagram .de-hotspot small{font-size:.7em;font-weight:500;color:var(--muted)}.de-computer-diagram .de-hotspot:hover,.de-computer-diagram .de-hotspot:focus-visible,.de-computer-diagram .de-hotspot[aria-pressed=true]{color:var(--ink);background:color-mix(in srgb,var(--orange) 15%,var(--paper));border-color:var(--orange)}
+.de-bus-row{display:flex;align-items:center;justify-content:center;gap:20px}.de-bus-row .de-native-part{width:26%;min-width:160px}.de-bus-row>span{color:var(--orange);font-size:2em}.de-bus-lines{display:grid;grid-template-rows:repeat(3,minmax(0,1fr));gap:8px;margin:18px 0 12px}.de-computer-diagram .de-bus{border:none;min-height:37px;padding:6px 12px;border-radius:7px;color:#143047}.de-computer-diagram .de-address{background:#fce4a1}.de-computer-diagram .de-data{background:#ade1fa}.de-computer-diagram .de-control{background:#f3afbd}.de-bus-lines .de-bus:hover,.de-bus-lines .de-bus[aria-pressed=true]{background:#ffca73;color:#203040}
+.de-device-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.de-peripheral-grid{margin-top:12px}.de-memory-brace{font-size:.72em;border:1px dashed var(--line);padding:10px;display:flex;align-items:center;justify-content:center;text-align:center}.de-device-grid .de-native-part{min-height:78px}
+@media(max-width:1100px){.de-storage-native,.de-native-levels{grid-template-columns:1fr}.de-signal-figure svg{max-height:230px}.de-storage-card{min-height:0}}
+@media(max-width:680px){.de-native-twocol{grid-template-columns:1fr}.de-hybrid-grid{grid-template-columns:1fr}.de-native-arrow{transform:rotate(90deg);font-size:1.15em;line-height:1}.de-hybrid-node{min-height:76px}.de-stage-flow{margin:12px 0}.de-bus-row{gap:7px}.de-bus-row .de-native-part{min-width:0;width:44%;font-size:.85em}.de-device-grid{gap:6px}.de-computer-diagram{padding:7px}.de-computer-diagram .de-hotspot{font-size:.75em;min-height:64px;padding:8px 4px}.de-device-grid .de-native-part{min-height:70px}.de-computer-diagram .de-hotspot small{font-size:.65em}.de-counter-cycle{gap:3px}.de-state-cell{min-width:42px}}
+
+/* v37.0.68: scoped circuit-timing corrections and standalone system/logic/circuit lessons */
+.de-timing-revised .de-revised-svg-wrap{overflow:auto;max-width:100%;margin:15px 0 10px;border-radius:12px;background:var(--soft);border:1px solid var(--line);padding:9px}
+.de-timing-revised .de-revised-svg-wrap svg{display:block;width:100%;min-width:440px;height:auto;max-height:none;overflow:visible;user-select:text}
+.de-timing-revised .de-signal-figure{min-width:0}
+.de-design-detail{border:1px solid var(--line);background:var(--paper);border-radius:15px;padding:clamp(12px,2vw,20px);margin:20px 0}
+.de-design-detail h3{margin:0 0 10px!important;font-size:1.02em}
+.de-design-scroll{max-width:100%;overflow-x:auto;background:var(--soft);border-radius:11px;border:1px solid var(--line)}
+.de-design-svg{width:100%;height:auto;min-width:590px;max-height:none;display:block;user-select:text}
+.de-design-wire{stroke:#137c6c;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.de-design-return{stroke:#54849b;stroke-width:1.3;stroke-dasharray:5 5}
+.de-design-block{fill:var(--paper);stroke:var(--green);stroke-width:2.7}
+.de-design-memory,.de-design-reg{fill:var(--paper);stroke:#247cb8;stroke-width:2.7}
+.de-design-text{fill:var(--ink);font-size:19px;font-weight:600;user-select:text}
+.de-design-strong{font-size:23px;font-weight:800}
+.de-design-caption-box{fill:var(--paper);stroke:var(--line);stroke-width:1.8}
+.de-design-details{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0}
+.de-design-details article{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:16px;min-width:0}
+.de-design-details h3{margin:0 0 10px!important;font-size:1.04em}
+.de-design-details p{font-size:.9em;line-height:1.65;margin:0}
+@media(max-width:720px){.de-design-details{grid-template-columns:1fr}.de-design-svg{min-width:570px}.de-timing-revised .de-revised-svg-wrap svg{min-width:480px}}
+/* Keep both corrected timing diagrams fully readable instead of clipping a stage or signal at the card edge. */
+.de-native-twocol.de-timing-revised{grid-template-columns:minmax(0,1fr)}
+.de-timing-revised .de-revised-svg-wrap svg{min-width:0}
+@media(max-width:620px){.de-timing-revised .de-revised-svg-wrap svg{min-width:480px}}
+
+/* Unit 01 page 8: MOS source, insulated gate, drain and conductive state. */
+.de-cmos-controls{justify-content:space-between;margin:16px 0 12px}
+.de-cmos-live{display:flex;gap:10px;flex-wrap:wrap}
+.de-cmos-live span{display:flex;align-items:center;gap:12px;padding:8px 15px;background:var(--paper);border:1px solid var(--line);border-radius:9px;color:var(--ink);font-weight:700}
+.de-cmos-live strong{font-size:1.2em;color:var(--green)}
+.de-cmos-svg{min-width:580px}
+.de-cmos-svg .de-cmos-terminal{font-size:13px;fill:var(--muted);font-weight:600}
+.de-cmos-svg .de-cmos-status{font-size:18px;font-weight:800;fill:var(--green)}
+.de-cmos-table table{min-width:440px}
+.de-cmos-selected{background:color-mix(in srgb, var(--green) 15%, var(--paper))!important;outline:2px solid var(--green);outline-offset:-2px;font-weight:800}
+@media(max-width:740px){.de-cmos-svg{min-width:540px}.de-cmos-controls{align-items:flex-start}}
+
+/* Unit 01 voltage inputs: geometrically scaled voltage bands and distinct 0.8/2.0-V boundaries. */
+.de-voltage-guide{max-width:100%;margin:30px 0 10px;padding:0 4px;color:var(--ink)}
+.de-voltage-track{height:104px;display:flex;position:relative;border:1px solid var(--line);border-radius:12px;overflow:visible;isolation:isolate}
+.de-voltage-track>div:not(.de-voltage-marker){min-width:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:9px 3px;gap:6px;text-align:center;color:#142d3e}
+.de-voltage-track strong{font-size:clamp(10px,1.5vw,16px);line-height:1.2;overflow-wrap:anywhere}
+.de-voltage-track span:not(#v-marker-label){font-size:clamp(10px,1.3vw,13px);font-weight:600;line-height:1.15}
+.de-voltage-low{width:16%;background:#9cdbda;border-radius:12px 0 0 12px}
+.de-voltage-mid{width:24%;background:#ffe1b2;border-left:3px solid #be7928;border-right:3px solid #be7928}
+.de-voltage-high{width:60%;background:#b7dfbe;border-radius:0 12px 12px 0}
+.de-voltage-marker{pointer-events:none;position:absolute;top:-11px;bottom:-10px;width:0;border-left:3px solid #19416c;z-index:3;filter:drop-shadow(0 1px 1px #fff8)}
+.de-voltage-marker:before{content:'';position:absolute;left:-7px;top:-8px;border-left:5.5px solid transparent;border-right:5.5px solid transparent;border-top:9px solid #19416c}
+.de-voltage-marker #v-marker-label{position:absolute;left:0;top:-35px;transform:translateX(-50%);padding:2px 6px;border:1px solid var(--line);border-radius:5px;background:var(--paper);font-size:12px;font-weight:800;color:var(--ink);white-space:nowrap}
+.de-voltage-ticks{height:30px;position:relative;font-size:12px;font-weight:700;color:var(--ink)}
+.de-voltage-ticks span{position:absolute;top:7px;transform:translateX(-50%);white-space:nowrap}
+.de-voltage-ticks span:first-child{transform:none}.de-voltage-ticks span:last-child{transform:translateX(-100%)}
+.de-voltage-presets{margin:18px 0 10px}
+@media(max-width:560px){.de-voltage-track{height:110px}.de-voltage-track strong{font-size:9px}.de-voltage-track span:not(#v-marker-label){font-size:9px}.de-voltage-marker #v-marker-label{font-size:10px}.de-voltage-ticks{font-size:10px}.de-voltage-presets .de-button{font-size:11px;padding:7px}}
+
+/* Keep the live voltage cursor clear of signal-band labels. */
+.de-voltage-track .de-voltage-marker{top:calc(100% - 23px);bottom:-9px}
+.de-voltage-track .de-voltage-marker:before{top:-9px;border-top:0;border-bottom:9px solid #19416c}
+.de-voltage-track .de-voltage-marker #v-marker-label{display:none}
+.de-voltage-mid .de-mid-short{display:none}
+@media(max-width:560px){.de-voltage-mid .de-mid-long{display:none}.de-voltage-mid .de-mid-short{display:block}}
+
+/* MUX control labels sit inside the trapezoid, immediately above the physical pin entrances. */
+.de-svg-pinlabel{font-size:17px;font-weight:800;fill:var(--ink);paint-order:stroke fill;stroke:var(--paper);stroke-width:3px;stroke-linejoin:round}
+
+/* Shared Unit 01 / Unit 02 selector in the Digital Electronics header. */
+.de-unit-switch{display:inline-flex;align-items:center;position:relative;gap:8px;min-width:0;color:#e3f5f2;font-size:12px;font-weight:740;letter-spacing:.01em;line-height:1.3}
+.de-unit-switch>span:first-child{white-space:nowrap}
+.de-unit-switch select{appearance:none;-webkit-appearance:none;min-width:0;width:clamp(160px,23vw,310px);max-width:310px;background:#1d4151;color:#f6fdfb;border:1px solid #6c909a;border-radius:11px;padding:10px 29px 10px 11px;font-size:12.5px;font-weight:700;cursor:pointer;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}
+.de-unit-switch select:focus-visible{outline:3px solid #ffa32d;outline-offset:2px}
+.de-unit-switch select option{color:#142d3a;background:#fff}
+.de-unit-caret{position:absolute;right:10px;top:50%;transform:translateY(-50%);pointer-events:none;font-size:18px;color:#def9f2}
+.de-head-links{min-width:0}
+@media(max-width:900px){.de-topbar{flex-wrap:wrap}.de-head-links{width:100%;justify-content:space-between;gap:8px}.de-unit-switch{flex:1}.de-unit-switch select{width:100%;max-width:none}}
+@media(max-width:420px){.de-head-links{gap:5px}.de-unit-switch{gap:5px}.de-unit-switch>span:first-child{font-size:11px}.de-unit-switch select{font-size:11px;padding:8px 22px 8px 8px}.de-unit-caret{right:6px}.de-top-btn{flex-shrink:0}}
+
+</style><link href="logo.jpeg" rel="icon"/><style data-bundled-from="digital-electronics-consolidated.css">
+/* Course consolidation: multiple related micro-lessons within one navigable lesson. */
+.de-shell,.de-main,.de-content{min-width:0;max-width:100%}.de-shell{box-sizing:border-box}.de-sublesson{display:block;margin:2rem 0 0;padding:1.4rem 0 0;border-top:2px solid #d5e9e0;scroll-margin-top:6rem}
+.de-sublesson>h2{color:#142f47;font-size:clamp(1.3rem,2.5vw,1.85rem);line-height:1.25;margin:.65rem 0 1rem}
+.de-sublesson>.de-kicker{font-size:.72rem;letter-spacing:.07em;color:#0b7d66;font-weight:700}
+.de-sublesson>.de-content{max-width:100%}
+.de-sublesson .u16-lab,.de-sublesson .de-reveal{max-width:100%}
+.de-consolidation-note{background:#eff8f4;border:1px solid #c6e3d7;border-radius:12px;padding:10px 14px;margin:1rem 0 1.5rem;color:#0b6356;font-weight:600;font-size:.9rem}
+body.dark .de-sublesson>h2{color:#ecf7f5}
+body.dark .de-sublesson{border-top-color:#345850}
+body.dark .de-consolidation-note{background:#173d37;color:#e0f6ed}
+@media(max-width:680px){.de-sublesson{margin-top:1.4rem;padding-top:1.1rem}.de-sublesson>h2{font-size:1.25rem}}
+
+</style><script>(function(){"use strict";
+const aliases={"computers":"integrated-circuits","synchronous":"comb-seq","logic-pulses":"logic-levels","analog-digital":"start"},topics={"start":["start","analog-digital"],"comb-seq":["comb-seq","synchronous"],"logic-levels":["logic-levels","logic-pulses"],"integrated-circuits":["integrated-circuits","computers"]},key="asic-skill-de-unit01-v610-completed";
+const migrateHash=()=>{let old=decodeURIComponent(location.hash.slice(1));if(aliases[old])history.replaceState(null,'','#'+aliases[old]);};
+migrateHash();window.addEventListener('hashchange',migrateHash);
+try{let arr=JSON.parse(localStorage.getItem(key)||'[]');if(Array.isArray(arr)){
+let prior=new Set(arr),after=new Set(arr);
+for(const [parent,ids] of Object.entries(topics)){if(ids.length<2)continue;
+if(ids.every(id=>prior.has(id)))after.add(parent);else after.delete(parent);
+for(const child of ids.slice(1))after.delete(child);
+}
+localStorage.setItem(key,JSON.stringify([...after]));}}
+catch(e){}
+})();</script></head><body><header class="de-topbar"><a class="de-brand" href="index.html#tracks"><img alt="" onerror="this.style.display='none'" src="logo.jpeg"/><span><b>ASIC<span class="de-brand-orange">-Skill</span></b><small>Digital Electronics</small></span></a><div class="de-head-links"><a href="index.html#tracks">← VLSI Topics</a><label class="de-unit-switch" for="de-unit-switch"><span>Unit</span><select aria-label="Choose a Digital Electronics unit" id="de-unit-switch"><option selected="" value="digital-electronics.html">Unit 01 · Introduction to Digital Electronics</option><option value="digital-electronics-unit02.html">Unit 02 · Number Systems</option><option value="digital-electronics-unit03.html">Unit 03 · Binary Codes</option><option value="digital-electronics-unit04.html">Unit 04 · Logic Gates</option><option value="digital-electronics-unit05.html">Unit 05 · Boolean Algebra</option><option value="digital-electronics-unit06.html">Unit 06 · Minimization of Switching Functions</option><option value="digital-electronics-unit07.html">Unit 07 · Combinational Logic Design</option><option value="digital-electronics-unit08.html">Unit 08 · Programmable Logic Devices</option><option value="digital-electronics-unit09.html">Unit 09 · Threshold Logic</option><option value="digital-electronics-unit10.html">Unit 10 · Flip-Flops</option><option value="digital-electronics-unit11.html">Unit 11 · Shift Registers</option><option value="digital-electronics-unit12.html">Unit 12 · Counters</option><option value="digital-electronics-unit13.html">Unit 13 · Sequential Circuits-I</option><option value="digital-electronics-unit14.html">Unit 14 · Sequential Circuits-II</option><option value="digital-electronics-unit15.html">Unit 15 · Algorithmic State Machines</option><option value="digital-electronics-unit16.html">Unit 16 · Logic Families</option><option value="digital-electronics-unit17.html">Unit 17 · ADC and DAC Converters</option><option value="digital-electronics-unit18.html">Unit 18 · Memories</option><option value="digital-electronics-unit19.html">Unit 19 · Timing Circuits and Display Devices</option></select><span aria-hidden="true" class="de-unit-caret">⌄</span></label><button aria-label="Toggle color theme" class="de-top-btn" id="de-theme" title="Toggle color theme" type="button">◐</button><button aria-label="Reduce font size" class="de-top-btn" id="de-font-down" type="button">A−</button><button aria-label="Increase font size" class="de-top-btn" id="de-font-up" type="button">A+</button></div></header>
+<div class="de-breadcrumb"><a href="index.html#tracks">VLSI Topics</a><span>›</span><span>Digital Electronics</span><span>›</span><strong>Unit 01 Introduction to Digital Electronics</strong></div>
+<div class="de-shell"><aside class="de-sidebar" id="de-sidebar"><div class="de-side-top"><div class="de-course-label">DIGITAL ELECTRONICS</div><h2>Unit 01</h2><p>Introduction to Digital Electronics</p><div class="de-progress-bar"><span id="de-progress-fill"></span></div><div class="de-progress-text" id="de-progress-text">0 of 17 complete</div><label class="de-search-label" for="de-search">Search lessons</label><input autocomplete="off" id="de-search" placeholder="Search a topic…" type="search"/></div><nav aria-label="Unit 01 lessons" class="de-sidenav"><button class="de-nav-item" data-target="start" title="Includes 2 original related topics" type="button"><span class="de-nav-index">00</span><span>Unit overview</span><span aria-label="Completed" class="de-done-mark" hidden="">✓</span></button>
+
+<button class="de-nav-item" data-target="why-digital" type="button"><span class="de-nav-index">01</span><span>Why use digital techniques?</span><span aria-label="Completed" class="de-done-mark" hidden="">✓</span></button>
+<button class="de-nav-item" data-target="comb-seq" title="Includes 2 original related topics" type="button"><span class="de-nav-index">02</span><span>Combinational and sequential circuits</span><span aria-label="Completed" class="de-done-mark" hidden="">✓</span></button>
+
+<button class="de-nav-item" data-target="design-levels" type="button"><span class="de-nav-index">03</span><span>System design</span><span aria-label="Completed" class="de-done-mark" hidden="">✓</span></button>
+<button class="de-nav-item" data-target="design-logic" type="button"><span class="de-nav-index">04</span><span>Logic design</span><span aria-label="Completed" class="de-done-mark" hidden="">✓</span></button>
+<button class="de-nav-item" data-target="design-circuit" type="button"><span class="de-nav-index">05</span><span>Circuit design</span><span aria-label="Completed" class="de-done-mark" hidden="">✓</span></button>
+<button class="de-nav-item" data-target="logic-levels" title="Includes 2 original related topics" type="button"><span class="de-nav-index">06</span><span>HIGH, LOW and logic conventions</span><span aria-label="Completed" class="de-done-mark" hidden="">✓</span></button>
+
+<button class="de-nav-item" data-target="logic-gates" type="button"><span class="de-nav-index">07</span><span>Logic gates: the fundamental operators</span><span aria-label="Completed" class="de-done-mark" hidden="">✓</span></button>
+<button class="de-nav-item" data-target="arithmetic" type="button"><span class="de-nav-index">08</span><span>Arithmetic and comparison operations</span><span aria-label="Completed" class="de-done-mark" hidden="">✓</span></button>
+<button class="de-nav-item" data-target="coding" type="button"><span class="de-nav-index">09</span><span>4-to-2 binary encoder</span><span aria-label="Completed" class="de-done-mark" hidden="">✓</span></button>
+<button class="de-nav-item" data-target="decoding" type="button"><span class="de-nav-index">10</span><span>2-to-4 binary decoder</span><span aria-label="Completed" class="de-done-mark" hidden="">✓</span></button>
+<button class="de-nav-item" data-target="data-steering" type="button"><span class="de-nav-index">11</span><span>Multiplexers and demultiplexers</span><span aria-label="Completed" class="de-done-mark" hidden="">✓</span></button>
+<button class="de-nav-item" data-target="storage" type="button"><span class="de-nav-index">12</span><span>Registers, counters and frequency division</span><span aria-label="Completed" class="de-done-mark" hidden="">✓</span></button>
+<button class="de-nav-item" data-target="transmission" type="button"><span class="de-nav-index">13</span><span>Serial and parallel data transfer</span><span aria-label="Completed" class="de-done-mark" hidden="">✓</span></button>
+<button class="de-nav-item" data-target="integrated-circuits" title="Includes 2 original related topics" type="button"><span class="de-nav-index">14</span><span>Digital ICs and levels of integration</span><span aria-label="Completed" class="de-done-mark" hidden="">✓</span></button>
+
+<button class="de-nav-item" data-target="rtl-lab" type="button"><span class="de-nav-index">15</span><span>Encoder and decoder HDL lab</span><span aria-label="Completed" class="de-done-mark" hidden="">✓</span></button>
+<button class="de-nav-item" data-target="practice" type="button"><span class="de-nav-index">16</span><span>Practice and challenge questions</span><span aria-label="Completed" class="de-done-mark" hidden="">✓</span></button></nav><div class="de-side-bottom"><a href="index.html#vlsi-digital-electronics">← Back to topic catalog</a></div></aside><div class="de-sidebar-overlay" hidden="" id="de-sidebar-overlay"></div>
+<main class="de-main"><div class="de-content-top"><button aria-controls="de-sidebar" aria-expanded="false" class="de-menu" id="de-menu" type="button">☰ Lessons</button><div class="de-route" id="de-route">UNIT 01 / INTRODUCTION</div><span id="de-counter">01 / 17</span></div><div class="de-study-panel"><section aria-labelledby="title-start" class="de-lesson" hidden="" id="start"><div class="de-kicker">YOUR LEARNING PATH</div><h1 id="title-start">Unit overview</h1><div class="de-content"><div class="de-hero"><span class="de-pill">ASIC-Skill study track · Unit 01</span><h2>Understand digital electronics by experimenting with it.</h2><p>From the voltage coming out of a sensor to the logic inside a processor, every lesson links a circuit idea to a decision you can test. Read in short sections, use the controls, then solve a question.</p><div class="de-hero-stats"><span><strong>19</strong> guided topics</span><span><strong>8+</strong> interactive explorations</span><span><strong>1</strong> review quiz</span></div></div>
+<h3>What you will be able to do</h3><div class="de-three"><article><b>01 · Interpret</b><p>Differentiate physical signal voltages and binary symbols; explain clocks, pulses, and switching behavior.</p></article><article><b>02 · Design</b><p>Read gate truth tables, steer data with muxes, and understand state held in registers and counters.</p></article><article><b>03 · Apply</b><p>Recognize processor building blocks and verify small encoder/decoder circuits with HDL examples.</p></article></div>
+<div class="de-note"><strong>Learning sequence:</strong> Study the functional concept, examine its circuit behavior, and then check the result with the worked exercises. Lesson completion is saved in this browser.</div>
+<article aria-labelledby="title-analog-digital" class="de-sublesson" data-original-topic="analog-digital" id="analog-digital"><div class="de-kicker">RELATED TOPIC · ANALOG DIGITAL</div><h2 id="title-analog-digital">Analog and digital systems</h2><div class="de-content"><p>An <strong>analog circuit</strong> deals with a quantity whose magnitude can change continuously within its operating range. The output of a microphone preamplifier, for instance, moves through many intermediate voltages as sound varies. A <strong>digital circuit</strong> interprets signals using a limited vocabulary of states—most often LOW and HIGH.</p>
+<p>The physical wire is still analog: its voltage rises and falls over finite time. Digital design becomes manageable because the receiver classifies a range of voltages as the same logical value.</p>
+<div class="de-demo"><div class="de-demo-head"><strong>Explore · Two ways of representing a signal</strong><span>Live waveform</span></div><div class="de-controls"><label>Signal frequency <output id="wave-f-label">2 Hz</output><input id="wave-f" max="6" min="1" step="1" type="range" value="2"/></label><label>Digital threshold <output id="wave-th-label">2.5 V</output><input id="wave-th" max="4" min="1" step="0.1" type="range" value="2.5"/></label></div><svg aria-label="Analog sine wave overlaid with binary representation" id="analog-chart" role="img" viewbox="0 0 720 218"><rect fill="#fff" height="208" rx="12" width="710" x="5" y="5"></rect><path d="M48 190 H685 M48 30 V190" fill="none" stroke="#668388" stroke-width="2"></path><path d="M48 110 C88 28 128 28 168 110 S248 192 288 110 S368 28 408 110 S488 192 528 110 S608 28 648 110" fill="none" stroke="#e87918" stroke-width="4"></path><path d="M48 170 H97 V69 H177 V170 H257 V69 H337 V170 H417 V69 H497 V170 H577 V69 H657" fill="none" stroke="#16866c" stroke-width="3"></path><text fill="#243e53" x="60" y="26">Analog voltage and digital threshold waveform</text></svg><p aria-live="polite" class="de-result" id="wave-description"></p></div>
+<table><thead><tr><th>Question</th><th>Analog view</th><th>Digital view</th></tr></thead><tbody><tr><td>Information</td><td>Signal magnitude has direct meaning</td><td>Recognized symbols carry meaning</td></tr><tr><td>Typical example</td><td>Sensor conditioning / audio amplifier</td><td>Counter / memory / microcontroller</td></tr><tr><td>Noise</td><td>Small changes may affect the interpreted value</td><td>Noise margin tolerates changes inside valid bands</td></tr><tr><td>Storage</td><td>Possible, but precision can be challenging</td><td>Bits can be stored and copied reproducibly</td></tr></tbody></table>
+<div class="de-note"><strong>Key distinction:</strong> “digital” does not mean that the electrical voltage changes instantaneously, nor that all digital signals must be sampled. The two-state interpretation is a logical abstraction.</div></div></article></div><div class="de-lesson-actions"><button class="de-button alt" data-action="previous" type="button">← Previous</button><button class="de-button" data-action="complete" type="button">Mark complete ✓</button><button class="de-button alt" data-action="next" type="button">Next lesson →</button></div></section>
+
+<section aria-labelledby="title-why-digital" class="de-lesson" hidden="" id="why-digital"><div class="de-kicker">1.1 · BENEFITS AND BOUNDARIES</div><h1 id="title-why-digital">Why use digital techniques?</h1><div class="de-content"><p>Digital systems are attractive because reliable logic decisions can be built from repeatable, interconnected blocks. Memories preserve data, software can change functions without changing every wire, and standard-cell libraries make large systems practical.</p>
+<div class="de-two"><div class="de-panel"><h3>Common strengths</h3><ul><li><strong>Repeatability:</strong> a valid HIGH remains HIGH through logic restoration.</li><li><strong>Programmability:</strong> processor instructions select the required operation.</li><li><strong>Storage:</strong> flip-flops and memory cells encode reusable state.</li><li><strong>Integration:</strong> enormous numbers of transistors fit onto a modern IC.</li></ul></div><div class="de-panel"><h3>Design tradeoffs</h3><ul><li><strong>Real-world inputs:</strong> temperature and pressure begin as continuous quantities.</li><li><strong>Conversion:</strong> ADC and DAC interfaces add complexity, quantization and time.</li><li><strong>Power and speed:</strong> clocking and switching still cost energy.</li><li><strong>Precision:</strong> a digital number cannot recover information discarded by its sensor or ADC.</li></ul></div></div>
+<h3>Hybrid system: the path from environment to action</h3>
+<section aria-label="Hybrid electronics signal-conversion sequence" class="de-native-graph">
+<div class="de-hybrid-grid">
+<div class="de-hybrid-node"><span aria-hidden="true" class="de-emoji">♨</span><strong>Sensor</strong><small>Analog quantity</small></div><span aria-hidden="true" class="de-native-arrow">→</span>
+<div class="de-hybrid-node"><span aria-hidden="true" class="de-emoji">▥</span><strong>ADC</strong><small>Sample + quantize</small></div><span aria-hidden="true" class="de-native-arrow">→</span>
+<div class="de-hybrid-node"><span aria-hidden="true" class="de-emoji">⚙</span><strong>Controller</strong><small>Digital decisions</small></div><span aria-hidden="true" class="de-native-arrow">→</span>
+<div class="de-hybrid-node"><span aria-hidden="true" class="de-emoji">∿</span><strong>DAC / PWM</strong><small>Control signal</small></div><span aria-hidden="true" class="de-native-arrow">→</span>
+<div class="de-hybrid-node"><span aria-hidden="true" class="de-emoji">↻</span><strong>Actuator</strong><small>Physical output</small></div>
+</div>
+<p class="de-caption">A sensor measures a physical quantity, the ADC converts the measurement to a binary value, and the digital controller computes a response. A DAC or equivalent output stage drives the actuator.</p>
+</section>
+<p>Picture a digitally controlled fan: a temperature sensor generates an analog measurement, an ADC makes a numeric sample, logic decides a command, and power-control hardware adjusts the fan. Some systems use digital PWM directly instead of a DAC.</p>
+<details class="de-reveal"><summary>Quick check · Is a digital thermometer entirely digital?</summary><p>Not usually. A physical temperature signal must be sensed and interpreted; digital processing follows an analog sensing stage. That mix is the point of a <strong>hybrid</strong> system.</p></details></div><div class="de-lesson-actions"><button class="de-button alt" data-action="previous" type="button">← Previous</button><button class="de-button" data-action="complete" type="button">Mark complete ✓</button><button class="de-button alt" data-action="next" type="button">Next lesson →</button></div></section>
+<section aria-labelledby="title-comb-seq" class="de-lesson" hidden="" id="comb-seq"><div class="de-kicker">1.1 · MEMORY OR NO MEMORY</div><h1 id="title-comb-seq">Combinational and sequential circuits</h1><div class="de-content"><p>A <strong>combinational</strong> circuit computes an output from present inputs. An adder is an example: with the same bit inputs it gives the same sum and carry. A <strong>sequential</strong> circuit also uses stored state, so an identical current input can lead to a different result depending on what happened earlier.</p>
+<div class="de-two"><div class="de-panel"><h3>Combinational</h3><p class="de-equation">Y = f(inputs)</p><p>Logic gates, encoders, decoders, comparators and multiplexers compute values without intentional storage.</p></div><div class="de-panel"><h3>Sequential</h3><p class="de-equation">Q<sub>next</sub> = g(inputs, Q<sub>now</sub>)</p><p>Registers, counters and finite-state machines keep state in latches or flip-flops.</p></div></div>
+<div class="de-demo"><div class="de-demo-head"><strong>Explore · A positive-edge D flip-flop</strong><span>Stored state</span></div><p>Choose the D input, then issue a rising clock edge. The Q output updates only when you clock the model. This view shows the block symbol, both outputs and the simplified working table.</p><div class="de-control-row"><button class="de-button alt" id="d-toggle" type="button">D = 0</button><button class="de-button" id="d-clock" type="button">↑ Apply clock edge</button><button class="de-button alt" id="d-reset" type="button">Reset Q</button></div><div class="de-figure-card de-figure-full"><svg aria-label="Connected positive-edge D flip-flop symbol: D and clock inputs; Q and complementary Q bar outputs" id="dff-diagram" role="img" viewbox="0 0 860 300"><rect fill="#fff" height="225" stroke="#15374a" stroke-width="4" width="262" x="290" y="30"></rect><path d="M80 102 H290 M80 210 H290 M552 105 H742 M552 192 H742" fill="none" stroke="#16866c" stroke-width="4"></path><path d="M290 190 L318 210 L290 230" fill="none" stroke="#15374a" stroke-width="4"></path><g fill="#18334a" font-size="27" font-weight="700"><text x="28" y="112">D</text><text x="20" y="219">CK</text><text x="409" y="74">D FF</text><text x="312" y="112">D</text><text x="320" y="220">CK</text><text x="517" y="112">Q</text><text x="511" y="200">Q̅</text></g></svg></div><p class="de-caption">The triangle at CK marks rising-edge triggering. Q and Q̅ are complementary for a known stored binary state. The reset button initializes this teaching model.</p><div class="de-figure-card"><h3 class="de-mini-title">D flip-flop characteristic table</h3><div aria-live="polite" class="de-table-wrap" id="dff-state-table"></div></div><div class="de-bit-flow"><span>Input D <b id="d-bit">0</b></span><span>Output Q <b id="q-bit">0</b></span><span>Output Q̅ <b id="qbar-bit">1</b></span></div><p aria-live="polite" class="de-result" id="d-status">Q currently holds 0.</p></div>
+<details class="de-reveal"><summary>Worked thought experiment · Why does a counter require memory?</summary><p>To advance from 3 to 4, the circuit must know that its current count is 3. That existing count is stored state. A purely combinational circuit cannot track the number of earlier pulses without such a state input.</p></details><article aria-labelledby="title-synchronous" class="de-sublesson" data-original-topic="synchronous" id="synchronous"><div class="de-kicker">RELATED TOPIC · SYNCHRONOUS</div><h2 id="title-synchronous">Synchronous versus asynchronous state</h2><div class="de-content"><p>A <strong>synchronous</strong> sequential system arranges state updates around agreed clock events. Between those edges, combinational paths can still respond to changing inputs. An <strong>asynchronous</strong> sequential system may update its state after an input or internal event without waiting for a global clock edge.</p>
+<section aria-label="Synchronous and asynchronous circuit diagrams" class="de-native-twocol de-timing-revised">
+<article class="de-signal-figure">
+<div class="de-signal-title"><span class="de-figure-count">01</span><strong>Synchronous · clock-driven</strong></div>
+<p>One shared clock updates the registers on every rising edge. The three labeled edges illustrate a bit moving through successive pipeline stages.</p>
+<div class="de-revised-svg-wrap"><svg aria-label="Clock rises at exactly x 125, x 300 and x 475, vertically aligned with flip-flop FF1, FF2 and FF3. All flip-flops share one clock bus." class="de-inline-svg" role="img" viewbox="0 0 620 280">
+<defs><marker id="de-sync-data-arrow" markerheight="5" markerwidth="5" orient="auto-start-reverse" refx="9" refy="5" viewbox="0 0 10 10"><path d="M0 0 L10 5 L0 10 Z" fill="#16755f"></path></marker></defs>
+<text class="de-svg-native-text" x="7" y="80">CLK</text>
+<path class="de-graph-wave" d="M55 80 H125 V39 H195 V80 H300 V39 H370 V80 H475 V39 H545 V80 H600"></path>
+<g class="de-sync-rise-markers"><path d="M125 39 L119 47 M125 39 L131 47 M300 39 L294 47 M300 39 L306 47 M475 39 L469 47 M475 39 L481 47" fill="none" stroke="#e87918" stroke-width="3.5"></path><path d="M125 85 V150 M300 85 V150 M475 85 V150" stroke="#e87918" stroke-dasharray="4 5" stroke-width="1.7"></path></g>
+<g class="de-sync-data-path" fill="none" marker-end="url(#de-sync-data-arrow)" stroke="#16755f" stroke-width="2.7"><path d="M28 188 H83"></path><path d="M167 188 H258"></path><path d="M342 188 H433"></path><path d="M517 188 H603"></path></g>
+<g fill="var(--soft)" stroke="var(--green)" stroke-width="2.7"><rect height="68" rx="9" width="84" x="83" y="154"></rect><rect height="68" rx="9" width="84" x="258" y="154"></rect><rect height="68" rx="9" width="84" x="433" y="154"></rect></g>
+<g class="de-svg-native-text" text-anchor="middle"><text x="125" y="180">D FF</text><text x="300" y="180">D FF</text><text x="475" y="180">D FF</text><text font-size="11" x="125" y="200">↑ CK</text><text font-size="11" x="300" y="200">↑ CK</text><text font-size="11" x="475" y="200">↑ CK</text><text font-size="12" text-anchor="start" x="88" y="245">FF1</text><text font-size="12" text-anchor="start" x="263" y="245">FF2</text><text font-size="12" text-anchor="start" x="438" y="245">FF3</text></g>
+<g class="de-sync-shared-clock" fill="none" stroke="#40718a" stroke-width="2"><path d="M75 261 H550"></path><path d="M125 261 V222 M300 261 V222 M475 261 V222"></path></g><text class="de-svg-native-text" font-size="11" x="5" y="268">Shared CK</text>
+<g class="de-svg-native-text"><text font-size="12" x="14" y="168">D<tspan baseline-shift="sub" font-size="9">in</tspan></text><text font-size="12" x="535" y="169">Q<tspan baseline-shift="sub" font-size="9">out</tspan></text></g>
+</svg></div>
+<div class="de-caption">The dashed orange guides meet the <strong>rising clock edges</strong> and the corresponding FF columns. The bottom clock bus is shared: each FF captures its own D at <em>every</em> rising edge.</div>
+</article>
+<article class="de-signal-figure">
+<div class="de-signal-title"><span class="de-figure-count">02</span><strong>Asynchronous · event-driven</strong></div>
+<p>The handshake uses explicitly connected <strong>request input, request, acknowledge, and done output</strong> signals rather than a global clock.</p>
+<div class="de-revised-svg-wrap"><svg aria-label="Request input req in connects to a request generator, request travels to a responder, acknowledgement returns to generator, and done emerges as output." class="de-inline-svg" role="img" viewbox="0 0 620 280">
+<defs><marker id="de-async-arrow" markerheight="5" markerwidth="5" orient="auto" refx="9" refy="5" viewbox="0 0 10 10"><path d="M0 0 L10 5 L0 10 Z" fill="#176b98"></path></marker></defs>
+<rect fill="var(--soft)" height="132" rx="14" stroke="#167a9c" stroke-width="2.7" width="171" x="101" y="72"></rect>
+<rect fill="var(--soft)" height="132" rx="14" stroke="#df7e27" stroke-width="2.7" width="170" x="363" y="72"></rect>
+<g class="de-svg-native-text" text-anchor="middle"><text x="186" y="120">Request</text><text x="186" y="142">generator</text><text x="448" y="120">Responder</text><text x="448" y="142">(state machine)</text></g>
+<g fill="none" marker-end="url(#de-async-arrow)" stroke="#176b98" stroke-width="2.8"><path d="M13 134 H101"></path><path d="M272 108 H363"></path><path d="M363 170 H272"></path><path d="M533 134 H605"></path></g>
+<g class="de-svg-native-text" text-anchor="middle"><text font-size="11" x="56" y="116">req_in</text><text font-size="12" x="317" y="92">req →</text><text font-size="12" x="317" y="191">← ack</text><text font-size="12" x="568" y="117">done</text></g>
+<text class="de-svg-native-text" font-size="12" text-anchor="middle" x="180" y="252">Input event → transaction</text>
+<text class="de-svg-native-text" font-size="12" text-anchor="middle" x="448" y="252">Completion → output event</text>
+</svg></div>
+<div class="de-caption"><strong>req_in</strong> arrives from the environment, <strong>req</strong> requests service, <strong>ack</strong> confirms reception, and <strong>done</strong> signals completion. No global CLK is required.</div>
+</article>
+</section>
+<div aria-label="Clocked and event-driven circuit comparison" class="de-selectable-notes"><article><h3>Synchronous · clock-driven</h3><p>State is captured at designated clock edges. A register pipeline contains flip-flops that accept new state when the active clock edge arrives. Combinational logic may respond between edges.</p><p><strong>Timing checks:</strong> setup, hold, clock-to-Q and combinational path delay.</p><p><strong>Example:</strong> register pipeline.</p></article><article><h3>Asynchronous · event-driven</h3><p>State can change after input events without waiting for a shared clock. Request, acknowledge and completion signals coordinate transactions.</p><p><strong>Design checks:</strong> races, glitches and event sequencing.</p><p><strong>Example:</strong> request/acknowledge handshake controller.</p></article></div>
+<div aria-label="Clocked versus event-driven state comparison" class="de-inline-lab"><div><strong>Try the difference</strong><p>Change the proposed data. In the synchronous model Q only changes when you click a clock edge; an asynchronous event-driven example can react immediately.</p></div><div class="de-control-row"><button class="de-button alt" id="compare-change" type="button">Change input to 1</button><button class="de-button" id="compare-clock" type="button">↑ Rising edge</button><button class="de-button alt" id="compare-clear" type="button">Reset</button></div><div class="de-metrics"><div class="de-metric"><span>Input D</span><strong id="compare-d">0</strong></div><div class="de-metric"><span>Synchronous Q</span><strong id="compare-q">0</strong></div><div class="de-metric"><span>Event-responsive state</span><strong id="compare-async">0</strong></div></div><p aria-live="polite" class="de-caption" id="compare-caption">Both examples begin at zero.</p></div>
+<div class="de-two"><div class="de-panel"><h3>Synchronous</h3><p>Flip-flops capture at the designated edge. Timing verification examines setup time, hold time, clock-to-Q delay and path delays.</p><p><strong>Example:</strong> a register pipeline.</p></div><div class="de-panel"><h3>Asynchronous</h3><p>State changes follow handshakes or other event transitions. Races, glitches and timing coordination require careful design.</p><p><strong>Example:</strong> an event-driven handshake controller.</p></div></div>
+<div class="de-note"><strong>Engineering nuance:</strong> An asynchronous reset input on a clocked flip-flop is not the same as an entire asynchronous sequential architecture. It is one event-sensitive control pin.</div></div></article></div><div class="de-lesson-actions"><button class="de-button alt" data-action="previous" type="button">← Previous</button><button class="de-button" data-action="complete" type="button">Mark complete ✓</button><button class="de-button alt" data-action="next" type="button">Next lesson →</button></div></section>
+
+<section aria-labelledby="title-design-levels" class="de-lesson" hidden="" id="design-levels"><div class="de-kicker">1.1 · DESIGN ABSTRACTION / 01</div><h1 id="title-design-levels">System Design</h1><div class="de-content">
+<p>The <strong>system design</strong> view defines the product’s external behavior, data flow and performance targets before gates or transistors are selected. In a 4-bit accumulator, the goal is to add each incoming 4-bit value into a stored result.</p>
+<div class="de-design-detail"><h3>Digital system · Signals, state and interfaces</h3>
+<div class="de-design-scroll"><svg aria-label="System diagram showing a digital system with inputs, control, interface, memory, outputs and status, all connected with signal arrows" class="de-design-svg" role="img" viewbox="0 0 900 430">
+<defs><marker id="de-system-arrow" markerheight="6" markerwidth="6" orient="auto" refx="9" refy="5" viewbox="0 0 10 10"><path d="M0 0 L10 5 L0 10 Z" fill="#137c6c"></path></marker></defs>
+<rect class="de-design-block" height="192" rx="17" width="286" x="308" y="140"></rect>
+<g class="de-design-text" text-anchor="middle"><text class="de-design-strong" x="451" y="213">Digital system</text><text x="451" y="246">Processing + stored state</text><text x="451" y="281">4-bit accumulator</text></g>
+<rect class="de-design-memory" height="67" rx="12" width="171" x="366" y="20"></rect>
+<text class="de-design-text" text-anchor="middle" x="451" y="59">Memory</text>
+<path class="de-design-wire" d="M451 87 V140" marker-end="url(#de-system-arrow)"></path>
+<path class="de-design-wire de-design-return" d="M451 140 V87" marker-end="url(#de-system-arrow)"></path>
+<g class="de-design-wire" marker-end="url(#de-system-arrow)"><path d="M52 179 H308"></path><path d="M52 235 H308"></path><path d="M52 291 H308"></path><path d="M594 208 H843"></path><path d="M594 284 H843"></path></g>
+<g class="de-design-text"><text x="70" y="162">Data input In[3:0]</text><text x="70" y="218">Add / enable</text><text x="70" y="274">CLK and reset</text><text x="644" y="192">Acc[3:0]</text><text x="644" y="267">Status / carry</text></g>
+<rect class="de-design-caption-box" height="48" rx="10" width="790" x="55" y="355"></rect>
+<text class="de-design-text" text-anchor="middle" x="450" y="386">Interface contract: inputs · outputs · 4-bit width · throughput · timing · reset</text>
+</svg></div></div>
+<div class="de-design-details"><article><h3>What the block does</h3><p>For each enabled clock update: <strong>Acc ← (Acc + In) mod 16</strong>. The four output bits range from 0 to 15. A separate carry flag can report an overflow of the four-bit result.</p></article><article><h3>Interfaces and requirements</h3><p>Inputs: <code>In[3:0]</code>, enable, reset and clock. Outputs: <code>Acc[3:0]</code> and optional carry. Specify reset behavior, latency, throughput and expected environment.</p></article></div>
+<details class="de-reveal"><summary>System design self-check · What should be decided before choosing gates?</summary><p>Define the operation, bit width, memory behavior, clock/reset semantics, input/output interfaces, throughput, and any constraints on power, area and accuracy.</p></details>
+</div><div class="de-lesson-actions"><button class="de-button alt" data-action="previous" type="button">← Previous</button><button class="de-button" data-action="complete" type="button">Mark complete ✓</button><button class="de-button alt" data-action="next" type="button">Next lesson →</button></div></section>
+<section aria-labelledby="title-design-logic" class="de-lesson" hidden="" id="design-logic"><div class="de-kicker">1.1 · DESIGN ABSTRACTION / 02</div><h1 id="title-design-logic">Logic Design</h1><div class="de-content">
+<p>The <strong>logic design</strong> view turns the system behavior into connected arithmetic and storage blocks. The accumulator computes a sum combinationally; the register captures the selected sum at the rising clock edge, and its Q output feeds back to the adder.</p>
+<div class="de-design-detail"><h3>4-bit accumulator · Connected adder and register</h3>
+<div class="de-design-scroll"><svg aria-label="4-bit adder combines input and Q feedback, feeding a D register. Clock, reset and enable are connected to the register; Q feeds Acc and the adder." class="de-design-svg" role="img" viewbox="0 0 940 435">
+<defs><marker id="de-logic-arrow" markerheight="6" markerwidth="6" orient="auto" refx="9" refy="5" viewbox="0 0 10 10"><path d="M0 0 L10 5 L0 10 Z" fill="#187ba5"></path></marker></defs>
+<g class="de-design-wire de-logic-wires" marker-end="url(#de-logic-arrow)"><path d="M65 117 H263"></path><path d="M458 190 H576"></path><path d="M762 190 H884"></path></g>
+<path class="de-design-block" d="M263 91 L455 130 L455 244 L263 283 Z"></path>
+<g class="de-design-text" text-anchor="middle"><text class="de-design-strong" x="351" y="181">4-bit adder</text><text x="351" y="209">(+)</text><text x="351" y="232">Sum[3:0]</text></g>
+<rect class="de-design-reg" height="160" rx="12" width="186" x="576" y="108"></rect>
+<g class="de-design-text"><text x="593" y="190">D</text><text x="722" y="190">Q</text><text x="612" y="148">4-bit register</text><text x="612" y="227">↑ CK</text></g>
+<g class="de-design-text"><text x="72" y="101">In[3:0]</text><text x="799" y="175">Acc[3:0]</text><text x="66" y="294">Q feedback</text><text x="442" y="384">Clock</text><text x="694" y="346">Enable / reset</text></g>
+<g class="de-design-wire de-logic-wires" marker-end="url(#de-logic-arrow)"><path d="M839 190 V322 H204 V257 H263"></path><path d="M505 400 V234 H576"></path><path d="M666 376 V268"></path></g>
+<g><path d="M839 183 V197 M505 400 V411 M666 376 V385" stroke="#e87918" stroke-width="4"></path></g>
+</svg></div><p class="de-caption">The register output feeds one adder input, while the incoming data supplies the other. At the enabled rising clock edge, the lower four sum bits become the next accumulator state.</p></div>
+<div class="de-design-details"><article><h3>Combinational datapath</h3><p>The four-bit adder computes the sum using logic. The carry-out, if retained, may be used as a status signal. The adder output is not itself stored until the active register event.</p></article><article><h3>State and control</h3><p>The register provides memory, reset initializes its stored value, and enable selects whether to load a new result. A rising edge captures the next value.</p></article></div>
+<div class="de-design-detail"><h3>Explore the accumulator across abstraction levels</h3><div class="de-controls"><label>Input value <input id="acc-in" max="15" min="0" type="range" value="3"/><output id="acc-in-text">3</output></label><label>Starting register value <input id="acc-start" max="15" min="0" type="range" value="5"/><output id="acc-start-text">5</output></label></div><div class="de-control-row"><button aria-pressed="true" class="de-button alt de-level-btn" data-level="system" type="button">System</button><button aria-pressed="false" class="de-button alt de-level-btn" data-level="logic" type="button">Logic</button><button aria-pressed="false" class="de-button alt de-level-btn" data-level="circuit" type="button">Circuit</button></div><div aria-live="polite" class="de-detail-panel" id="acc-level-content"></div></div>
+</div><div class="de-lesson-actions"><button class="de-button alt" data-action="previous" type="button">← Previous</button><button class="de-button" data-action="complete" type="button">Mark complete ✓</button><button class="de-button alt" data-action="next" type="button">Next lesson →</button></div></section>
+<section aria-labelledby="title-design-circuit" class="de-lesson" hidden="" id="design-circuit"><div class="de-kicker">1.1 · DESIGN ABSTRACTION / 03</div><h1 id="title-design-circuit">Circuit Design</h1><div class="de-content">
+<p>The <strong>circuit design</strong> view implements the logical functions using semiconductor devices and standard cells. The Boolean behavior stays the same, but transistor sizing, capacitance, power and switching delay now matter.</p>
+<div class="de-design-detail de-cmos-workbench" id="cmos-workbench">
+<h3>CMOS inverter · PMOS pull-up and NMOS pull-down</h3>
+<p>A CMOS inverter uses a p-channel enhancement MOSFET connected to V<sub>DD</sub> and an n-channel enhancement MOSFET connected to ground. Both insulated gate electrodes are driven by A; their drain terminals form the common output node Y. The PMOS and NMOS source arrows identify complementary device types.</p>
+<div class="de-control-row de-cmos-controls">
+<button aria-pressed="false" class="de-button" id="cmos-toggle-input" type="button">Input A = 0 · Set to 1</button>
+<div aria-live="polite" class="de-cmos-live"><span>Input <strong id="cmos-input-state">0</strong></span><span>Output <strong id="cmos-output-state">1</strong></span></div>
+</div>
+<div class="de-design-scroll"><svg aria-label="Connected complementary CMOS inverter. PMOS source from VDD and NMOS source to ground; both insulated gates at A and joined drains at Y." class="de-design-svg de-cmos-svg" id="cmos-inverter-diagram" role="img" viewbox="0 0 840 455">
+<rect fill="var(--paper)" height="432" rx="16" stroke="var(--line)" width="820" x="10" y="8"></rect>
+<!-- Conventional insulated gate MOS symbols. The horizontal source arms carry the correct device arrows. -->
+<g class="de-cmos-net" fill="none" stroke="var(--ink)" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.7">
+<!-- supply and ground -->
+<path d="M441 51 H527 M484 51 V107"></path>
+<!-- p-source enters from the right. Arrow points inward toward the channel (pMOS). -->
+<path d="M484 107 V129 H440"></path>
+<!-- p-drain returns to common output -->
+<path d="M440 178 H484 V232"></path>
+<!-- n-drain connects to the same output node -->
+<path d="M484 232 V255 H440"></path>
+<!-- n-source leaves toward the right, then to ground -->
+<path d="M440 313 H484 V381"></path>
+<path d="M112 232 H314 V143 H398 M314 232 V287 H398"></path>
+<path d="M484 232 H713"></path>
+</g>
+<!-- channel highlight is behind the physical transistor marks -->
+<g fill="none" stroke-linecap="round" stroke-width="11">
+<path d="M440 130 V177" id="cmos-p-conduction" opacity="1" stroke="#0c8b64"></path>
+<path d="M440 256 V312" id="cmos-n-conduction" opacity=".35" stroke="#99aab4"></path>
+</g>
+<g fill="none" stroke="var(--ink)" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.4">
+<!-- insulated gate plates stop short of each channel -->
+<path d="M398 105 V187 M398 248 V323"></path>
+<!-- transistor channel paths -->
+<path d="M440 129 V178 M440 255 V313"></path>
+<!-- PMOS arrow forms a part of its source arm, pointing toward semiconductor -->
+<path d="M454 119 L440 129 L454 139"></path>
+<!-- NMOS arrow forms part of its source arm, pointing out of semiconductor -->
+<path d="M470 303 L484 313 L470 323"></path>
+</g>
+<circle cx="112" cy="232" fill="var(--paper)" r="6" stroke="var(--ink)" stroke-width="3"></circle>
+<circle cx="484" cy="232" fill="var(--ink)" r="6"></circle>
+<circle cx="713" cy="232" fill="var(--paper)" r="6" stroke="var(--ink)" stroke-width="3"></circle>
+<path d="M453 381 H515 M462 390 H506 M473 399 H495" fill="none" stroke="var(--ink)" stroke-linecap="round" stroke-width="3"></path>
+<g class="de-design-text">
+<text class="de-design-strong" x="450" y="39">VDD (+5 V)</text>
+<text class="de-design-strong" x="506" y="168">PMOS</text>
+<text class="de-design-strong" x="506" y="296">NMOS</text>
+<text class="de-design-strong" x="69" y="222">A</text>
+<text class="de-design-strong" x="721" y="224">Y</text>
+<text x="528" y="397">GND</text>
+<text class="de-cmos-terminal" x="325" y="117">Gate</text>
+<text class="de-cmos-terminal" x="325" y="321">Gate</text>
+<text class="de-cmos-terminal" x="499" y="93">Source</text>
+<text class="de-cmos-terminal" x="508" y="219">Joined drains</text>
+<text class="de-cmos-terminal" x="497" y="355">Source</text>
+</g>
+<g class="de-design-text">
+<text class="de-design-strong" id="cmos-svg-input" x="67" y="275">A = 0</text>
+<text class="de-design-strong" id="cmos-svg-output" x="667" y="275">Y = 1</text>
+<text class="de-cmos-status" id="cmos-svg-p-status" x="600" y="168">ON</text>
+<text class="de-cmos-status" id="cmos-svg-n-status" x="600" y="296">OFF</text>
+</g>
+</svg></div>
+<div aria-live="polite" class="de-note" id="cmos-conduction-explanation"><strong>A = 0:</strong> The PMOS conducts from V<sub>DD</sub> to the output while the NMOS is cut off. The output is pulled HIGH (Y = 1).</div>
+<div class="de-table-wrap de-cmos-table"><table><thead><tr><th>Input A</th><th>PMOS</th><th>NMOS</th><th>Output Y</th></tr></thead><tbody><tr class="de-cmos-selected" id="cmos-table-low"><td>0</td><td>ON</td><td>OFF</td><td>1 (HIGH)</td></tr><tr id="cmos-table-high"><td>1</td><td>OFF</td><td>ON</td><td>0 (LOW)</td></tr></tbody></table></div>
+<p class="de-caption">Logic model: Y = ¬A. V<sub>DD</sub> = 5 V is an example supply level; actual CMOS supply and switching thresholds depend on the process and cell library. Real transitions are not instantaneous because of transistor and load capacitances.</p>
+</div>
+<div class="de-design-details"><article><h3>Device choices</h3><p>Specify transistor sizes, voltage limits, output load, threshold models, noise margins and drive capability. Different standard-cell options trade area for speed and power.</p></article><article><h3>Verification</h3><p>Check logical function first, then transistor switching and parasitics. Timing verification includes rise/fall delay, load, interconnect and output slew.</p></article></div>
+<div class="de-design-detail"><h3>From gate to chip</h3><div class="de-stage-flow"><span>Boolean equations</span><b>→</b><span>Technology mapping</span><b>→</b><span>CMOS cells</span><b>→</b><span>Physical implementation</span><b>→</b><span>Signoff</span></div><p class="de-caption">The same 4-bit accumulator from the System and Logic lessons is ultimately built out of mapped gates and flip-flops.</p></div>
+</div><div class="de-lesson-actions"><button class="de-button alt" data-action="previous" type="button">← Previous</button><button class="de-button" data-action="complete" type="button">Mark complete ✓</button><button class="de-button alt" data-action="next" type="button">Next lesson →</button></div></section>
+<section aria-labelledby="title-logic-levels" class="de-lesson" hidden="" id="logic-levels"><div class="de-kicker">1.2 · VOLTAGE LEVELS</div><h1 id="title-logic-levels">HIGH, LOW and logic conventions</h1><div class="de-content"><p>Binary values are abstract symbols, not necessarily exact voltages. In <strong>positive logic</strong>, the higher recognized voltage range denotes 1. In <strong>negative logic</strong>, the mapping is reversed.</p>
+<div class="de-demo"><div class="de-demo-head"><strong>Explore · Classify an input voltage</strong><span>Illustrative 5 V TTL input bands</span></div><div class="de-controls"><label>Input voltage <output id="v-label">3.0 V</output><input id="v-slider" max="5" min="0" step="0.05" type="range" value="3"/></label><label>Logic convention <select id="logic-mode"><option value="positive">Positive logic</option><option value="negative">Negative logic</option></select></label></div><div aria-label="Voltage regions drawn to scale across a 0 to 5 volt range" class="de-voltage-guide">
+<div class="de-voltage-track">
+<div class="de-voltage-low"><strong>LOW</strong><span>0–0.8 V</span></div>
+<div class="de-voltage-mid"><strong class="de-mid-long">Indeterminate</strong><strong aria-hidden="true" class="de-mid-short">MID</strong><span>0.8–2.0 V</span></div>
+<div class="de-voltage-high"><strong>HIGH</strong><span>2.0–5.0 V</span></div>
+<div class="de-voltage-marker" id="v-position-marker" style="left:60%"><span id="v-marker-label">3.00 V</span></div>
+</div>
+<div class="de-voltage-ticks"><span style="left:0%">0 V</span><span style="left:16%">0.8 V</span><span style="left:40%">2.0 V</span><span style="left:100%">5 V</span></div>
+</div>
+<p class="de-caption">The widths follow the actual voltage intervals: LOW spans 0.8 V, the indeterminate region spans 1.2 V, and HIGH spans 3.0 V. Changing logic convention reverses the binary meaning, not these physical input-voltage bands.</p>
+<div aria-label="Voltage examples" class="de-control-row de-voltage-presets"><button class="de-button alt" data-voltage-preset="0.4" type="button">LOW: 0.40 V</button><button class="de-button alt" data-voltage-preset="1.5" type="button">Indeterminate: 1.50 V</button><button class="de-button alt" data-voltage-preset="3.3" type="button">HIGH: 3.30 V</button></div>
+<p aria-live="polite" class="de-result" id="v-state"></p></div>
+<p>These bands are <strong>illustrative for a particular older logic family</strong>, not universal. Actual VIH, VIL, VOH and VOL limits vary with technology, supply and loading. An input in the unspecified middle region must not be assumed to resolve as a reliable 0 or 1.</p><article aria-labelledby="title-logic-pulses" class="de-sublesson" data-original-topic="logic-pulses" id="logic-pulses"><div class="de-kicker">RELATED TOPIC · LOGIC PULSES</div><h2 id="title-logic-pulses">Pulse waveforms, frequency and duty cycle</h2><div class="de-content"><p>A pulse has transitions (edges), a high or low duration, and a repeating period when the waveform is periodic. In real hardware, edges take measurable time: rise time is often measured between 10% and 90% of the swing, and fall time between 90% and 10%. Pulse width is often defined at the 50% crossing points.</p>
+<div class="de-demo"><div class="de-demo-head"><strong>Explore · Clock generator</strong><span>Period and duty cycle</span></div><div class="de-controls"><label>Clock frequency <output id="freq-label">10 MHz</output><input id="clock-frequency" max="50" min="1" type="range" value="10"/></label><label>High duty <output id="duty-label">50%</output><input id="clock-duty" max="90" min="10" step="5" type="range" value="50"/></label></div><svg aria-label="Digital clock waveform with adjustable duty cycle" id="clock-chart" role="img" viewbox="0 0 720 185"><path d="M40 154 H65 V60 H135 V154 H205 V60 H275 V154 H345 V60 H415 V154 H485 V60 H555 V154 H650" fill="none" stroke="#16866c" stroke-width="4"></path><text fill="#15374a" x="34" y="34">Digital clock / 50% duty cycle</text></svg><div aria-live="polite" class="de-metrics" id="clock-metrics"></div></div>
+<p class="de-equation">Period T = 1 / f   ·   Duty cycle = t<sub>HIGH</sub> / T × 100%</p>
+<details class="de-reveal"><summary>Worked example · 20 MHz clock with 30% duty</summary><p>The period is 1 / (20 × 10⁶) = 50 ns. HIGH time is 0.30 × 50 = 15 ns. LOW time is 35 ns. Frequency alone does not tell you the pulse duty cycle.</p></details></div></article></div><div class="de-lesson-actions"><button class="de-button alt" data-action="previous" type="button">← Previous</button><button class="de-button" data-action="complete" type="button">Mark complete ✓</button><button class="de-button alt" data-action="next" type="button">Next lesson →</button></div></section>
+
+<section aria-labelledby="title-logic-gates" class="de-lesson" hidden="" id="logic-gates"><div class="de-kicker">1.3 · BOOLEAN BUILDING BLOCKS</div><h1 id="title-logic-gates">Logic gates: the fundamental operators</h1><div class="de-content"><p>AND, OR and NOT express simple two-state decisions. NAND and NOR are <strong>universal</strong> because combinations of either alone can implement any Boolean function. XOR reports a difference; XNOR reports equality. A flip-flop adds the state required for sequential circuits.</p>
+<div class="de-demo"><div class="de-demo-head"><strong>Explore · Gate truth tables</strong><span>Choose two input bits</span></div><div class="de-controls"><label>Gate <select id="gate-type"><option>AND</option><option>OR</option><option>NOT A</option><option>NAND</option><option>NOR</option><option>XOR</option><option>XNOR</option></select></label><div class="de-control-row"><button class="de-button alt" id="gate-a" type="button">A = 0</button><button class="de-button alt" id="gate-b" type="button">B = 0</button></div></div><div class="de-figure-card"><svg aria-label="Gate input output diagram" id="gate-diagram" role="img" viewbox="0 0 850 255"><path d="M140 98 H290 M140 170 H290 M440 135 H760" fill="none" stroke="#16866c" stroke-width="4"></path><path d="M290 65 H370 A70 70 0 0 1 370 205 H290 Z" fill="#fff" stroke="#15374a" stroke-width="4"></path><g fill="#15374a" font-size="25"><text x="50" y="104">A=0</text><text x="50" y="176">B=0</text><text x="680" y="122">Y=0</text><text x="320" y="40">AND</text></g></svg></div><p aria-live="polite" class="de-result" id="gate-out"></p><div class="de-visual-grid"><div class="de-figure-card"><h3 class="de-mini-title">Standard gate symbols</h3><div class="de-symbol-grid" id="gate-symbol-grid"></div></div><div class="de-figure-card"><h3 class="de-mini-title">Truth table</h3><div class="de-table-wrap" id="gate-table"></div></div></div></div>
+<h3>Common expressions</h3><table><thead><tr><th>Function</th><th>Meaning</th><th>Expression</th></tr></thead><tbody><tr><td>AND</td><td>Both must be 1</td><td>Y = A·B</td></tr><tr><td>OR</td><td>Either can be 1</td><td>Y = A+B</td></tr><tr><td>NAND</td><td>NOT of AND</td><td>Y = (AB)'</td></tr><tr><td>NOR</td><td>NOT of OR</td><td>Y = (A+B)'</td></tr><tr><td>XOR</td><td>Different inputs</td><td>Y = A⊕B</td></tr><tr><td>XNOR</td><td>Equal inputs</td><td>Y = (A⊕B)'</td></tr></tbody></table></div><div class="de-lesson-actions"><button class="de-button alt" data-action="previous" type="button">← Previous</button><button class="de-button" data-action="complete" type="button">Mark complete ✓</button><button class="de-button alt" data-action="next" type="button">Next lesson →</button></div></section>
+<section aria-labelledby="title-arithmetic" class="de-lesson" hidden="" id="arithmetic"><div class="de-kicker">1.4.1 + 1.4.6 · DATAPATHS</div><h1 id="title-arithmetic">Arithmetic and comparison operations</h1><div class="de-content"><p>Digital arithmetic is built from additions, shifts and logic. An <strong>adder</strong> combines operands and carry. A <strong>subtractor</strong> computes their difference (frequently using complement arithmetic), a <strong>multiplier</strong> combines shifted partial products, and a <strong>divider</strong> derives quotient and remainder. A <strong>comparator</strong> reports whether A is less than, equal to, or greater than B.</p>
+<div class="de-demo"><div class="de-demo-head"><strong>Explore · Four-bit arithmetic and comparison</strong><span>Fixed-width demo</span></div><div class="de-controls"><label>Operand A <output id="op-a-label">7</output><input id="op-a" max="15" min="0" type="range" value="7"/></label><label>Operand B <output id="op-b-label">5</output><input id="op-b" max="15" min="0" type="range" value="5"/></label><label>Carry in <select id="carry-in"><option value="0">0</option><option value="1">1</option></select></label></div><div aria-live="polite" class="de-metrics" id="arith-stats"></div><p class="de-caption">4-bit operands are unsigned. A five-bit result keeps the carry rather than silently discarding it.</p></div>
+<div class="de-activity" id="arithmetic-workbench"><div class="de-demo-head"><strong>Interactive hardware arithmetic lab</strong><span>Five blocks · 4-bit operands</span></div><p>Choose a circuit, vary the A and B inputs above, then follow the signal-level implementation, binary result, and reasoning steps below. Carry and borrow handling, result width, signedness, and division-by-zero behavior are shown for the selected operation.</p>
+<div aria-label="Choose arithmetic logic circuit" class="de-op-grid" role="group">
+<button aria-pressed="true" class="de-op-tab" data-op="add" type="button">1 · Adder</button><button aria-pressed="false" class="de-op-tab" data-op="subtract" type="button">2 · Subtractor</button><button aria-pressed="false" class="de-op-tab" data-op="multiply" type="button">3 · Multiplier</button><button aria-pressed="false" class="de-op-tab" data-op="divide" type="button">4 · Divider</button><button aria-pressed="false" class="de-op-tab" data-op="compare" type="button">5 · Comparator</button>
+</div><div class="de-activity-grid"><div class="de-figure-card"><h3 class="de-mini-title" id="op-figure-heading">4-bit adder</h3><svg aria-label="Interactive arithmetic logic block with four bit A and B buses" id="arithmetic-logic-diagram" role="img" viewbox="0 0 710 260"></svg></div><div class="de-figure-card"><h3 class="de-mini-title">Live computed results</h3><div aria-live="polite" class="de-live-results" id="op-output-cards"></div></div></div><div class="de-activity-grid"><div class="de-figure-card"><h3 class="de-mini-title">Step-by-step explanation</h3><div aria-live="polite" id="op-worked"></div></div><div class="de-figure-card"><h3 class="de-mini-title">Concept and constraints</h3><div aria-live="polite" id="op-concept"></div></div></div></div>
+<p><strong>Design note:</strong> bit width matters. An N-bit unsigned output holds 0 through 2ᴺ−1; exceeding that range can generate a carry or wrap when the result is truncated.</p></div><div class="de-lesson-actions"><button class="de-button alt" data-action="previous" type="button">← Previous</button><button class="de-button" data-action="complete" type="button">Mark complete ✓</button><button class="de-button alt" data-action="next" type="button">Next lesson →</button></div></section>
+<section aria-labelledby="title-coding" class="de-lesson" hidden="" id="coding"><div class="de-kicker">1.4.2 · ENCODER</div><h1 id="title-coding">4-to-2 binary encoder</h1><div class="de-content"><p>A <strong>4-to-2 encoder</strong> represents which one of four active-HIGH input lines is asserted using two binary output bits. This example assumes <strong>exactly one of D0–D3 is HIGH</strong>; it is not a priority encoder.</p>
+<div class="de-demo"><div class="de-demo-head"><strong>Explore · Select a one-hot input</strong><span>4 inputs → 2 outputs</span></div><div class="de-controls"><label>Assert one input<select id="enc-input"><option value="0">D0 active</option><option value="1">D1 active</option><option value="2">D2 active</option><option value="3">D3 active</option></select></label></div><div class="de-figure-card de-figure-full"><svg aria-label="Four wires D0 through D3 enter a 4-to-2 encoder; two output wires A1 and A0 show the binary code" id="encoder-diagram" role="img" viewbox="0 0 850 300"><rect fill="#fff" height="230" rx="8" stroke="#15374a" stroke-width="4" width="250" x="290" y="35"></rect><g stroke="#16866c" stroke-width="4"><path d="M95 86 H290 M95 135 H290 M95 184 H290 M95 233 H290 M540 139 H760 M540 210 H760"></path></g><g fill="#15374a" font-size="24"><text x="370" y="132">4 : 2</text><text x="370" y="167">Encoder</text><text x="32" y="92">D0</text><text x="32" y="141">D1</text><text x="32" y="190">D2</text><text x="32" y="239">D3</text><text x="766" y="146">A1</text><text x="766" y="216">A0</text></g></svg></div><p aria-live="polite" class="de-result" id="enc-description"></p><div class="de-figure-card"><h3 class="de-mini-title">4-to-2 encoder truth table · active HIGH</h3><div class="de-table-wrap" id="enc-table"></div></div></div>
+<h3>Output equations</h3><p class="de-equation">A1 = D2 + D3   ·   A0 = D1 + D3</p><p>For example, when D2 is the sole asserted input, the encoder emits A1A0 = <code>10</code>. Other inputs must be 0 for this simple truth table. If multiple inputs may be asserted, add priority logic and a valid indication.</p>
+<div class="de-lesson-actions"><button class="de-button alt" data-action="previous" type="button">← Previous</button><button class="de-button" data-action="complete" type="button">Mark complete ✓</button><button class="de-button alt" data-action="next" type="button">Next lesson →</button></div></div></section>
+<section aria-labelledby="title-decoding" class="de-lesson" hidden="" id="decoding"><div class="de-kicker">1.4.3 · DECODER</div><h1 id="title-decoding">2-to-4 binary decoder</h1><div class="de-content"><p>A <strong>2-to-4 decoder</strong> reads input bits A1 and A0 and asserts one of four output lines. These outputs are active HIGH; exactly one Y output is 1 for each input combination when enable E is 1.</p>
+<div class="de-demo"><div class="de-demo-head"><strong>Explore · Choose the binary input</strong><span>2 inputs → 4 outputs</span></div><div class="de-controls"><label>Binary input A1A0 <select id="dec-input"><option value="0">00</option><option value="1">01</option><option value="2">10</option><option value="3">11</option></select></label><div class="de-control-row"><button aria-pressed="true" class="de-button" id="dec-enable" type="button">Enable EN = 1</button></div></div><div class="de-figure-card de-figure-full"><svg aria-label="Two input lines A1 and A0 and enable line enter a decoder; four output wires Y0 through Y3" id="decoder-diagram" role="img" viewbox="0 0 850 305"><rect fill="#fff" height="230" rx="8" stroke="#15374a" stroke-width="4" width="250" x="290" y="35"></rect><g stroke="#16866c" stroke-width="4"><path d="M95 100 H290 M95 174 H290 M415 284 V265 M540 80 H760 M540 123 H760 M540 166 H760 M540 209 H760"></path></g><g fill="#15374a" font-size="22"><text x="370" y="132">2 : 4</text><text x="366" y="166">Decoder</text><text x="27" y="106">A1</text><text x="27" y="180">A0</text><text x="415" y="302">E</text><text x="766" y="85">Y0</text><text x="766" y="129">Y1</text><text x="766" y="171">Y2</text><text x="766" y="215">Y3</text></g></svg></div><p aria-live="polite" class="de-result" id="dec-description"></p><div class="de-figure-card"><h3 class="de-mini-title">2-to-4 decoder truth table · active HIGH</h3><div class="de-table-wrap" id="dec-table"></div></div></div>
+<h3>Active-HIGH output equations</h3><p class="de-equation">Y0 = E A̅1 A̅0   ·   Y1 = E A̅1 A0</p><p class="de-equation">Y2 = E A1 A̅0   ·   Y3 = E A1 A0</p><p>When E=0, all outputs are 0. When E=1 and A1A0=<code>10</code>, Y2 alone is HIGH. This is a <em>decoder</em>, not an encoder in reverse wiring—the physical gate network is different.</p>
+<h3>Related: code conversion</h3><p>A code converter changes one coding convention into another. For example, BCD <code>0110</code> represents decimal six; Excess-3 for six is <code>1001</code>.</p>
+<div class="de-lesson-actions"><button class="de-button alt" data-action="previous" type="button">← Previous</button><button class="de-button" data-action="complete" type="button">Mark complete ✓</button><button class="de-button alt" data-action="next" type="button">Next lesson →</button></div></div></section>
+<section aria-labelledby="title-data-steering" class="de-lesson" hidden="" id="data-steering"><div class="de-kicker">1.4.4–1.4.5 · ROUTING DATA</div><h1 id="title-data-steering">Multiplexers and demultiplexers</h1><div class="de-content"><p>A <strong>multiplexer (MUX)</strong> chooses one of several data sources and routes it to a common output according to a select code. A <strong>demultiplexer (DEMUX)</strong> routes one input value to one selected output, while other output lines stay inactive according to the design convention.</p>
+<div class="de-demo"><div class="de-demo-head"><strong>Explore · 4-to-1 multiplexer</strong><span>Enable and two select bits</span></div><div class="de-controls"><label>Selected input <select id="mux-select"><option value="0">S1S0 = 00 → D0</option><option value="1">S1S0 = 01 → D1</option><option value="2">S1S0 = 10 → D2</option><option value="3">S1S0 = 11 → D3</option></select></label><div class="de-control-row"><button class="de-button" id="mux-enable" type="button">Enable EN = 1</button></div></div><div class="de-switch-row" id="mux-switches"></div><div class="de-figure-card de-figure-full"><svg aria-label="4-to-1 MUX: all four data pins and actual connected enable EN, S1 and S0 select pins" id="mux-diagram" role="img" viewbox="0 0 860 460"><path d="M310 38 L572 112 V292 L310 364 Z" fill="#fff" stroke="#15374a" stroke-width="4"></path><g fill="none" stroke="#16866c" stroke-width="4"><path d="M75 84 H315 M75 142 H314 M75 200 H314 M75 260 H315 M572 179 H790 M370 419 V349 M480 419 V322 M555 419 V301"></path></g><g fill="#15374a" font-size="23"><text x="22" y="91">D0</text><text x="22" y="149">D1</text><text x="22" y="207">D2</text><text x="22" y="267">D3</text><text x="390" y="184">4:1 MUX</text><text x="737" y="170">Y</text><text x="354" y="452">S1</text><text x="468" y="452">S0</text><text x="547" y="452">E</text></g></svg></div><div class="de-figure-card"><h3 class="de-mini-title">MUX selection truth table</h3><div class="de-table-wrap" id="mux-table"></div></div><div class="de-bit-flow"><span>Enable EN <b id="mux-enable-state">1</b></span><span>Select S1S0 <b id="mux-select-bits">00</b></span><span>Output Y <b id="mux-output">0</b></span></div><p aria-live="polite" class="de-result" id="mux-description"></p></div>
+<p>The MUX can be viewed as a controlled switch, but its practical implementation consists of logic gates or standard cells. For 4 inputs, the select needs log₂(4) = 2 bits.</p>
+<details class="de-reveal"><summary>Try the inverse · 1-to-4 demultiplexing</summary><p>If input X=1 and the select code is 10, output Y2 is asserted while Y0, Y1 and Y3 remain 0 (for the active-HIGH implementation). Changing the selection moves the asserted output, not the input data itself.</p></details></div><div class="de-lesson-actions"><button class="de-button alt" data-action="previous" type="button">← Previous</button><button class="de-button" data-action="complete" type="button">Mark complete ✓</button><button class="de-button alt" data-action="next" type="button">Next lesson →</button></div></section>
+<section aria-labelledby="title-storage" class="de-lesson" hidden="" id="storage"><div class="de-kicker">1.4.8–1.4.10 · STATEFUL HARDWARE</div><h1 id="title-storage">Registers, counters and frequency division</h1><div class="de-content"><p>A <strong>register</strong> is a group of storage bits. Shift registers move bits one position per clock; counters update a stored numeric state on qualifying events. A modulo-N counter repeats after N states, so suitable counter outputs can divide a source clock by N.</p>
+<section aria-label="Register counter and divider diagrams" class="de-storage-native">
+<article class="de-storage-card">
+<h3>1 · Four-stage shift register</h3><p>Each active clock edge moves the stored bits by one position.</p>
+<div class="de-shift-rail"><span class="de-input-label">Serial D</span><span aria-hidden="true">→</span><div class="de-shift-cell">Q₃<strong id="stage-q3">0</strong></div><span aria-hidden="true">→</span><div class="de-shift-cell">Q₂<strong id="stage-q2">0</strong></div><span aria-hidden="true">→</span><div class="de-shift-cell">Q₁<strong id="stage-q1">0</strong></div><span aria-hidden="true">→</span><div class="de-shift-cell">Q₀<strong id="stage-q0">0</strong></div></div>
+<div class="de-native-clock">CLK ↑ · shared rising-edge sampling</div><p class="de-caption">All four stages update from their previous values at the same active edge.</p>
+</article>
+<article class="de-storage-card">
+<h3>2 · Modulo-4 counter</h3><p>The counter steps 00 → 01 → 10 → 11 → 00.</p>
+<div aria-label="Modulo-four counter state sequence" class="de-counter-cycle" role="group"><button aria-pressed="true" class="de-state-cell" data-count-state="0" type="button">00<small>0</small></button><span>→</span><button class="de-state-cell" data-count-state="1" type="button">01<small>1</small></button><span>→</span><button class="de-state-cell" data-count-state="2" type="button">10<small>2</small></button><span>→</span><button class="de-state-cell" data-count-state="3" type="button">11<small>3</small></button><span>↻</span></div>
+<p class="de-caption" id="de-count-inspection">Count = 0 (00). Click a state for its meaning; clock step advances the live model.</p>
+</article>
+<article class="de-storage-card">
+<h3>3 · Frequency divider (÷4)</h3><p>A modulo-4 counter's most significant bit toggles once every two input edges, giving one full output cycle per four input cycles.</p>
+<svg aria-label="Input clock and divide by four output, updated on each clock step" class="de-inline-svg" id="de-divider-wave" role="img" viewbox="0 0 560 230">
+<text class="de-svg-native-text" x="12" y="56">Input CLK</text><text class="de-svg-native-text" x="12" y="164">Output /4</text>
+<path class="de-graph-dashed" d="M112 80 H552 M112 195 H552"></path>
+<path class="de-graph-wave" d="M112 78 H552" id="de-input-clock-path"></path>
+<path class="de-graph-output" d="M112 192 H552" id="de-output-clock-path"></path>
+</svg>
+<p class="de-caption" id="de-divider-note">Press Clock step to move the output and highlight the corresponding counter state.</p>
+</article>
+</section><div class="de-demo"><div class="de-demo-head"><strong>Explore · Shift register and modulo-4 counter</strong><span>One step per button press</span></div><div class="de-controls"><label>Serial bit in <select id="serial-in"><option value="1">1</option><option value="0">0</option></select></label><div class="de-control-row"><button class="de-button" id="step-clock" type="button">↑ Clock step</button><button class="de-button alt" id="reset-count" type="button">Reset</button></div></div><div aria-label="Four bit shift register" class="de-register" id="shift-register"></div><div aria-live="polite" class="de-metrics" id="register-metrics"></div></div>
+<p><strong>Interpretation:</strong> each rising edge samples the serial input and shifts previous bits rightward in this demonstration. The modulo-4 count increments and wraps from 3 to 0. A frequency divider uses repetitive state transitions; actual output duty depends on its implementation.</p></div><div class="de-lesson-actions"><button class="de-button alt" data-action="previous" type="button">← Previous</button><button class="de-button" data-action="complete" type="button">Mark complete ✓</button><button class="de-button alt" data-action="next" type="button">Next lesson →</button></div></section>
+<section aria-labelledby="title-transmission" class="de-lesson" hidden="" id="transmission"><div class="de-kicker">1.4.11 · INFORMATION MOVEMENT</div><h1 id="title-transmission">Serial and parallel data transfer</h1><div class="de-content"><p>Parallel transfer presents multiple bits during the same transfer interval over multiple signal lines. Serial transfer presents a sequence of bits over a smaller number of signal lines. The tradeoff includes pin count, layout complexity, clock recovery, protocol framing and link speed—not simply “parallel is always faster.”</p>
+<div class="de-demo"><div class="de-demo-head"><strong>Explore · Send one byte</strong><span>Illustrative physical bits</span></div><div class="de-controls"><label>Byte (hex) <select id="tx-byte"><option value="165">0xA5</option><option value="60">0x3C</option><option value="240">0xF0</option><option value="1">0x01</option></select></label></div><div class="de-figure-card de-figure-full"><h3 class="de-mini-title">Serial transfer · 1 data line over eight time slots</h3><svg aria-label="Serial data transmitter and receiver connected by a single data line, eight time slots and a clock waveform" id="serial-diagram" role="img" viewbox="0 0 880 315"><path d="M150 150 H225 V110 H300 V150 H375 V110 H450 V150 H525 V110 H600 V150 H730" fill="none" stroke="#16866c" stroke-width="4"></path><rect fill="#fff" height="160" stroke="#15374a" stroke-width="3" width="135" x="12" y="85"></rect><rect fill="#fff" height="160" stroke="#15374a" stroke-width="3" width="135" x="733" y="85"></rect><g fill="#15374a" font-size="25"><text x="40" y="172">TX</text><text x="768" y="172">RX</text><text x="280" y="72">Serial link</text></g></svg><p class="de-caption">Illustrative synchronous serial transfer with clock shown separately; asynchronous UART does not use a shared CLK wire.</p></div><div class="de-figure-card de-figure-full"><h3 class="de-mini-title">Parallel transfer · 8 simultaneous data lines</h3><svg aria-label="Eight separate data wires from transmitter to receiver, plus a clock or strobe line" id="parallel-diagram" role="img" viewbox="0 0 880 405"><rect fill="#fff" height="345" stroke="#15374a" stroke-width="3" width="130" x="20" y="45"></rect><rect fill="#fff" height="345" stroke="#15374a" stroke-width="3" width="130" x="710" y="45"></rect><path d="M150 70 H710" stroke="#16866c" stroke-width="3"></path><text fill="#15374a" x="180" y="64">Bit 7</text><path d="M150 105 H710" stroke="#16866c" stroke-width="3"></path><text fill="#15374a" x="180" y="99">Bit 6</text><path d="M150 140 H710" stroke="#16866c" stroke-width="3"></path><text fill="#15374a" x="180" y="134">Bit 5</text><path d="M150 175 H710" stroke="#16866c" stroke-width="3"></path><text fill="#15374a" x="180" y="169">Bit 4</text><path d="M150 210 H710" stroke="#16866c" stroke-width="3"></path><text fill="#15374a" x="180" y="204">Bit 3</text><path d="M150 245 H710" stroke="#16866c" stroke-width="3"></path><text fill="#15374a" x="180" y="239">Bit 2</text><path d="M150 280 H710" stroke="#16866c" stroke-width="3"></path><text fill="#15374a" x="180" y="274">Bit 1</text><path d="M150 315 H710" stroke="#16866c" stroke-width="3"></path><text fill="#15374a" x="180" y="309">Bit 0</text><g fill="#15374a" font-size="26"><text x="54" y="210">TX</text><text x="755" y="210">RX</text></g></svg></div><div class="de-data-recap" id="tx-graphic"></div><p aria-live="polite" class="de-result" id="tx-caption"></p></div>
+<div class="de-two"><div class="de-panel"><h3>Serial · one bit after another</h3><p>Data appears in successive time slots on a single signal path (or a differential pair). Fewer data conductors simplify routing and cable connections. Protocols include <strong>UART, SPI, I²C and USB</strong>, although their framing and number of wires differ.</p><p><strong>Watch:</strong> bit order, baud/bit rate, clock recovery, encoding and framing.</p></div><div class="de-panel"><h3>Parallel · many bits per beat</h3><p>Multiple data wires transport bits at the same time. This may move an entire byte in one transfer beat, but requires more conductors and careful timing alignment. Examples include historical <strong>PATA/ATA, parallel SCSI and PCI</strong>, and on-chip parallel data buses.</p><p><strong>Watch:</strong> setup/hold, skew, crosstalk and pin budget.</p></div></div><div class="de-note"><strong>Engineering comparison:</strong> Parallel is not inherently faster: modern high-speed serial links can exceed traditional parallel interfaces through serialization, equalization and high symbol rates. The diagrams are conceptual, not protocol-level wiring requirements.</div></div><div class="de-lesson-actions"><button class="de-button alt" data-action="previous" type="button">← Previous</button><button class="de-button" data-action="complete" type="button">Mark complete ✓</button><button class="de-button alt" data-action="next" type="button">Next lesson →</button></div></section>
+<section aria-labelledby="title-integrated-circuits" class="de-lesson" hidden="" id="integrated-circuits"><div class="de-kicker">1.5 · FROM GATES TO CHIPS</div><h1 id="title-integrated-circuits">Digital ICs and levels of integration</h1><div class="de-content"><p>An integrated circuit combines many devices on a semiconductor substrate rather than wiring each transistor separately. Digital ICs can implement gates, decoders, arithmetic and memory. Historically, teaching materials classified chips by approximate equivalent-gate count using <strong>SSI, MSI, LSI, VLSI and ULSI</strong>.</p>
+<table><thead><tr><th>Historical label</th><th>Gate-count range in the provided chapter</th><th>Typical example</th></tr></thead><tbody><tr><td>SSI</td><td>Fewer than 12</td><td>Basic gates</td></tr><tr><td>MSI</td><td>12–99</td><td>Counter, multiplexer</td></tr><tr><td>LSI</td><td>100–9,999</td><td>Small memory</td></tr><tr><td>VLSI</td><td>10,000–99,999</td><td>Larger integrated functions</td></tr><tr><td>ULSI</td><td>100,000 or more</td><td>Historical label for very large chips</td></tr></tbody></table>
+<p>The ranges above describe the <strong>chapter’s historical classification</strong>. They are not a meaningful contemporary limit on what engineers call VLSI; modern chips can contain billions of transistors.</p>
+<h3>Logic technology and implementation</h3><p>TTL, ECL and IIL are classical bipolar logic families. MOS and especially CMOS use field-effect transistors. IC selection depends on supply, switching speed, power, noise tolerance, interface levels and packaging. Analog functions can also be integrated; the physical design constraints differ by application.</p><article aria-labelledby="title-computers" class="de-sublesson" data-original-topic="computers" id="computers"><div class="de-kicker">RELATED TOPIC · COMPUTERS</div><h2 id="title-computers">Microprocessors and digital computers</h2><div class="de-content"><p>A <strong>microprocessor</strong> fetches instructions, decodes them, performs arithmetic and logical operations, and coordinates data movement. A complete computer also includes memory, inputs, outputs and control infrastructure. These blocks communicate through data, address and control paths.</p>
+<section aria-label="Interactive CPU and computer bus diagram" class="de-architecture-interactive"><h3>Explore each component of a microprocessor system</h3><p>Watch the microprocessor example, then select the processor, memory, or a system bus to examine its role in instruction processing and data transfers.</p>
+<section class="de-video-module"><h3>How a computer works · Microprocessor execution</h3>
+<video aria-label="How a computer executes instructions using CPU registers, buses, ALU, RAM, and output" controls="" controlslist="nodownload" disablepictureinpicture="" height="720" id="de-alu-video" oncontextmenu="return false" playsinline="" preload="metadata" width="1280">
+<source src="digital-electronics-assets/microprocessor-work-1080p.mp4" type="video/mp4"/>
+    Your browser does not support inline MP4 playback.
+  </video>
+<p class="de-caption">The animated example follows a 5 + 3 calculation through CPU registers, the ALU, the address/data/control buses, memory, and the display.</p>
+</section>
+<section aria-label="Interactive computer architecture with keyboard accessible blocks" class="de-computer-diagram">
+<div class="de-bus-row de-bus-top"><button class="de-hotspot de-native-part" data-part="cpu" type="button">CPU</button><span>⇄</span><button class="de-hotspot de-native-part" data-part="cpu-interface" type="button">CPU interface</button></div>
+<div class="de-bus-lines"><button class="de-hotspot de-bus de-address" data-part="address" type="button">ADDRESS BUS · identifies target</button><button class="de-hotspot de-bus de-data" data-part="data" type="button">DATA BUS · transfers words</button><button class="de-hotspot de-bus de-control" data-part="control" type="button">CONTROL BUS · read / write / enable</button></div>
+<div class="de-device-grid"><button class="de-hotspot de-native-part" data-part="eprom" type="button">EPROM<small>Program / firmware</small></button><button class="de-hotspot de-native-part" data-part="ram" type="button">RAM<small>Working storage</small></button><button class="de-hotspot de-native-part" data-part="io" type="button">I/O interface<small>Peripheral bridge</small></button></div>
+<div class="de-device-grid de-peripheral-grid"><div class="de-memory-brace">EPROM + RAM = memory subsystem</div><button class="de-hotspot de-native-part" data-part="input" type="button">Input<small>Keys, sensors</small></button><button class="de-hotspot de-native-part" data-part="output" type="button">Output<small>Display, control</small></button></div>
+</section>
+<div aria-label="Component selection" class="de-hotspot-chips">
+<button data-part="cpu" type="button">CPU</button><button data-part="cpu-interface" type="button">CPU interface</button><button data-part="address" type="button">Address bus</button><button data-part="data" type="button">Data bus</button><button data-part="control" type="button">Control bus</button><button data-part="eprom" type="button">EPROM</button><button data-part="ram" type="button">RAM</button><button data-part="io" type="button">I/O interface</button><button data-part="input" type="button">Input</button><button data-part="output" type="button">Output</button></div>
+<article aria-live="polite" class="de-detail-panel de-arch-detail" id="architecture-detail" tabindex="-1"><h3 id="architecture-heading">CPU · Central Processing Unit</h3><p id="architecture-explanation">The processor executes instructions, operates on values and directs data movement across system interfaces.</p><p id="architecture-example"></p></article>
+<div class="de-native-table"><h3>System bus functions</h3><table><thead><tr><th>Bus</th><th>Main purpose</th><th>Typical direction</th></tr></thead><tbody><tr><td>Address</td><td>Selects memory or peripheral locations</td><td>Usually CPU/master to target</td></tr><tr><td>Data</td><td>Transfers instructions and data</td><td>Often bidirectional</td></tr><tr><td>Control</td><td>Read/write, enable and synchronization</td><td>Depends on signal</td></tr></tbody></table></div></section>
+<p>Microcomputers, minicomputers and mainframes form a <strong>historical size-oriented classification</strong> in the supplied chapter. Current system design instead commonly distinguishes embedded systems, servers, workstations, mobile systems and high-performance computers based on application and architecture.</p>
+<h3>Connections back to digital logic</h3><p>An ALU uses adders, comparators and Boolean gates. Register files store transient working data; memory holds instructions and other information. Control circuits orchestrate transfers and decisions, often using synchronous state machines.</p></div></article></div><div class="de-lesson-actions"><button class="de-button alt" data-action="previous" type="button">← Previous</button><button class="de-button" data-action="complete" type="button">Mark complete ✓</button><button class="de-button alt" data-action="next" type="button">Next lesson →</button></div></section>
+
+<section aria-labelledby="title-rtl-lab" class="de-lesson" hidden="" id="rtl-lab"><div class="de-kicker">1.9 · VERILOG &amp; VHDL</div><h1 id="title-rtl-lab">Encoder and decoder HDL lab</h1><div class="de-content"><p>Hardware description languages describe what hardware should do. This small lab defines a one-hot 4-to-2 encoder and matching 2-to-4 decoder. Both versions use explicit assignments so that the valid input mapping remains readable.</p>
+<div class="de-note"><strong>Input contract:</strong> for the encoder, exactly one of the four input bits must be HIGH. A <code>valid</code> output flags an invalid zero-hot or multi-hot pattern in the Verilog example.</div>
+<div class="de-tabs"><button class="de-code-tab active" data-lang="verilog" type="button">Verilog</button><button class="de-code-tab" data-lang="vhdl" type="button">VHDL</button></div>
+<div class="de-code-panel" data-code-panel="verilog"><div class="de-code-head">Synthesizable Verilog <button class="de-copy" data-copy="verilog" type="button">Copy code</button></div><pre id="code-verilog"><code>module encoder4to2(input wire [3:0] d, output reg [1:0] code,
+                   output reg valid);
+  always @* begin
+    code = 2'b00;
+    valid = 1'b1;
+    case (d)
+      4'b0001: code = 2'b00;
+      4'b0010: code = 2'b01;
+      4'b0100: code = 2'b10;
+      4'b1000: code = 2'b11;
+      default: valid = 1'b0;
+    endcase
+  end
+endmodule
+
+module decoder2to4(input wire [1:0] code,
+                   output wire [3:0] d);
+  assign d = 4'b0001 &lt;&lt; code;
+endmodule</code></pre></div>
+<div class="de-code-panel" data-code-panel="vhdl" hidden=""><div class="de-code-head">VHDL (IEEE std_logic_1164) <button class="de-copy" data-copy="vhdl" type="button">Copy code</button></div><pre id="code-vhdl"><code>library ieee;
+use ieee.std_logic_1164.all;
+
+entity encoder4to2 is
+  port (d: in std_logic_vector(3 downto 0);
+        code: out std_logic_vector(1 downto 0);
+        valid: out std_logic);
+end entity;
+architecture rtl of encoder4to2 is
+begin
+  process(d) begin
+    code &lt;= "00"; valid &lt;= '1';
+    case d is
+      when "0001" =&gt; code &lt;= "00";
+      when "0010" =&gt; code &lt;= "01";
+      when "0100" =&gt; code &lt;= "10";
+      when "1000" =&gt; code &lt;= "11";
+      when others =&gt; valid &lt;= '0';
+    end case;
+  end process;
+end architecture;
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+entity decoder2to4 is
+  port (code: in std_logic_vector(1 downto 0);
+        d: out std_logic_vector(3 downto 0));
+end entity;
+architecture rtl of decoder2to4 is
+begin
+  d &lt;= std_logic_vector(shift_left(to_unsigned(1, 4),
+             to_integer(unsigned(code))));
+end architecture;</code></pre></div>
+<h3>Try the truth vectors</h3><table><thead><tr><th>One-hot input</th><th>Encoded output</th><th>Decoded output</th></tr></thead><tbody><tr><td>0001</td><td>00</td><td>0001</td></tr><tr><td>0010</td><td>01</td><td>0010</td></tr><tr><td>0100</td><td>10</td><td>0100</td></tr><tr><td>1000</td><td>11</td><td>1000</td></tr></tbody></table>
+<p class="de-caption">Each encoder input selects a unique binary output, while the decoder activates the corresponding one-hot output. The Verilog and VHDL examples express this combinational mapping.</p></div><div class="de-lesson-actions"><button class="de-button alt" data-action="previous" type="button">← Previous</button><button class="de-button" data-action="complete" type="button">Mark complete ✓</button><button class="de-button alt" data-action="next" type="button">Next lesson →</button></div></section>
+<section aria-labelledby="title-practice" class="de-lesson" hidden="" id="practice"><div class="de-kicker">REVIEW · CHECK UNDERSTANDING</div><h1 id="title-practice">Practice and challenge questions</h1><div class="de-content"><p>Answer these questions covering Unit 01. Select an answer for each question, then submit for a score and explanations. You can repeat the quiz.</p>
+<div class="de-demo" id="de-quiz"><div class="de-quiz-head"><span>12 concept checks</span><span id="quiz-counter">0 / 12 answered</span></div><div id="quiz-questions"></div><div class="de-control-row"><button class="de-button" id="grade-quiz" type="button">Check my answers</button><button class="de-button alt" id="reset-quiz" type="button">Try again</button></div><div aria-live="polite" id="quiz-score"></div></div>
+<h3>Final challenge</h3><details class="de-reveal"><summary>Question · A periodic clock runs at 8 MHz with 25% duty cycle. What is its HIGH time?</summary><p>Period = 125 ns; HIGH time = 0.25 × 125 ns = <strong>31.25 ns</strong>.</p></details><details class="de-reveal"><summary>Question · Why is a 4-to-2 encoder not a good arbitrary four-input logic compressor?</summary><p>Two output bits can encode four mutually exclusive conditions. If several inputs are HIGH at once, multiple patterns conflict unless a priority and error policy is defined.</p></details></div><div class="de-lesson-actions"><button class="de-button alt" data-action="previous" type="button">← Previous</button><button class="de-button" data-action="complete" type="button">Mark complete ✓</button><button class="de-button alt" data-action="next" type="button">Next lesson →</button></div></section></div><footer class="de-footer">ASIC-Skill · Learn, design, verify · Unit 01 learning pages</footer></main></div>
+<script defer=""  data-bundled-from="digital-electronics.js">
+/* ASIC-Skill Unit 01: standalone, self-contained, original interactive lessons. */
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const $$ = selector => [...document.querySelectorAll(selector)];
+  const ids = $$('.de-lesson').map(el => el.id);
+  const total = ids.length;
+  const memory = {
+    load(key, fallback) { try { const v=localStorage.getItem(key);return v === null ? fallback : JSON.parse(v); } catch (_) {return fallback;} },
+    save(key, val) { try {localStorage.setItem(key,JSON.stringify(val));} catch (_) {} }
+  };
+  const progressKey='asic-skill-de-unit01-v610-completed';
+  let completed = new Set(memory.load(progressKey,[]).filter(v => ids.includes(v)));
+  let index = 0;
+  function setProgress() {
+    $('de-progress-fill').style.width = (completed.size / total * 100) + '%';
+    $('de-progress-text').textContent = `${completed.size} of ${total} complete`;
+    $$('.de-nav-item').forEach(btn=>btn.querySelector('.de-done-mark').hidden=!completed.has(btn.dataset.target));
+    const btn=$(ids[index])?.querySelector('[data-action="complete"]');
+    if(btn) btn.textContent=completed.has(ids[index])?'✓ Completed · Mark incomplete':'Mark complete ✓';
+  }
+  function closeSidebar() {
+    $('de-sidebar').classList.remove('show');
+    $('de-sidebar-overlay').hidden=true;
+    $('de-menu').setAttribute('aria-expanded','false');
+  }
+  function navigate(slug,shouldScroll=true) {
+    const i=ids.indexOf(slug); if(i < 0) return;
+    index=i;
+    $$('.de-lesson').forEach(el=>el.hidden = el.id !== slug);
+    $$('.de-nav-item').forEach(b => {b.classList.toggle('active',b.dataset.target === slug);b.setAttribute('aria-current',b.dataset.target === slug ? 'page':'false');});
+    $(slug).querySelector('[data-action="previous"]').disabled=i===0;
+    $(slug).querySelector('[data-action="next"]').disabled=i===total-1;
+    $('de-counter').textContent=`${String(i+1).padStart(2,'0')} / ${total}`;
+    $('de-route').textContent=`UNIT 01 / ${i===0 ? 'OVERVIEW' : i===total-1 ? 'REVIEW' : 'LESSON '+String(i).padStart(2,'0')}`;
+    document.title=`${$(slug).querySelector("h1").textContent} | ASIC-Skill Unit 01`;
+    if(location.hash.slice(1)!==slug) history.replaceState(null,'','#'+slug);
+    setProgress();closeSidebar();
+    if(shouldScroll) window.scrollTo({top:0,behavior:'auto'});
+  }
+  $$('.de-nav-item').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.target)));
+  document.querySelector('.de-study-panel').addEventListener('click',e=>{
+    const btn=e.target.closest('[data-action]'); if(!btn) return;
+    const action=btn.dataset.action;
+    if(action==='next' && index<total-1) navigate(ids[index+1]);
+    if(action==='previous' && index>0) navigate(ids[index-1]);
+    if(action==='complete') {
+      if(completed.has(ids[index])) completed.delete(ids[index]); else completed.add(ids[index]);
+      memory.save(progressKey,[...completed]);setProgress();
+    }
+  });
+  $('de-search').addEventListener('input',e=>{
+    const search=e.target.value.trim().toLowerCase();
+    $$('.de-nav-item').forEach(b=>{const s=b.dataset.target;const lesson=$(s);b.hidden=search!=='' && !(b.textContent.toLowerCase().includes(search)||lesson.textContent.toLowerCase().includes(search));});
+  });
+  $('de-menu').addEventListener('click',()=>{
+    const isOpen=$('de-sidebar').classList.toggle('show');$('de-sidebar-overlay').hidden=!isOpen;$('de-menu').setAttribute('aria-expanded',String(isOpen));
+  });
+  $('de-sidebar-overlay').addEventListener('click',closeSidebar);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSidebar();});
+  window.addEventListener('hashchange',()=>{const slug=decodeURIComponent(location.hash.slice(1));if(ids.includes(slug))navigate(slug);});
+  $('de-theme').addEventListener('click',()=>{document.body.classList.toggle('dark');memory.save('asic-skill-de-unit01-dark',document.body.classList.contains('dark'));});
+  document.body.classList.toggle('dark',!!memory.load('asic-skill-de-unit01-dark',false));
+  let scale=Number(memory.load('asic-skill-de-unit01-font',17));
+  function applyScale(){document.documentElement.style.setProperty('--lesson-font',scale+'px');memory.save('asic-skill-de-unit01-font',scale);}
+  $('de-font-up').addEventListener('click',()=>{scale=Math.min(23,scale+1);applyScale();});
+  $('de-font-down').addEventListener('click',()=>{scale=Math.max(14,scale-1);applyScale();});applyScale();
+  const initial=decodeURIComponent(location.hash.slice(1));navigate(ids.includes(initial)?initial:'start',false);
+
+  // Render inside a real SVG element, preserving its accessible label.
+  // Earlier release removed these helpers, stopping the entire teaching UI.
+  const renderSvg = (id, markup) => { const target=$(id); if (target) target.innerHTML=markup; };
+  const bin=(value,width=4)=>Number(value).toString(2).padStart(width,'0');
+  function updateAnalog(){
+    const f=Number($('wave-f').value), threshold=Number($('wave-th').value);
+    $('wave-f-label').textContent=f+' Hz'; $('wave-th-label').textContent=threshold.toFixed(1)+' V';
+    let analog=[], steps=[], last=0;
+    for(let i=0;i<=320;i++){
+      const x=48+i*2, phase=i/320, volts=2.5+2.05*Math.sin(2*Math.PI*f*phase-.6);
+      const y=188-volts*28, bit=+(volts>=threshold), dy=bit?64:162;
+      analog.push(`${i?'L':'M'}${x.toFixed(1)} ${y.toFixed(1)}`);
+      if(i===0) steps.push(`M${x} ${dy}`);
+      else if(bit!==last) steps.push(`L${x} ${last?64:162} L${x} ${dy}`);
+      if(i===320) steps.push(`L${x} ${dy}`);
+      last=bit;
+    }
+    const ty=188-threshold*28;
+    renderSvg('analog-chart',`<rect x="7" y="6" width="706" height="205" rx="13" fill="var(--paper)"/>
+      <path d="M46 19 V188 H690" fill="none" stroke="currentColor" opacity=".38" stroke-width="2"/>
+      <path d="M48 ${ty} H690" stroke="#aa7ab9" stroke-width="1.6" stroke-dasharray="6 5"/>
+      <path d="${analog.join(' ')}" stroke="#e87918" stroke-width="3.4" fill="none"/>
+      <path d="${steps.join(' ')}" stroke="#087858" stroke-width="3.4" fill="none" opacity=".84"/>
+      <g fill="currentColor" font-size="12"><text x="61" y="22">Analog voltage (orange)</text><text x="270" y="22">Digital decision (green)</text><text x="565" y="${Math.max(20,ty-6)}">Threshold</text><text x="656" y="204">Time →</text></g>`);
+    $('wave-description').textContent=`The orange curve varies continuously. The green output is ${last?'HIGH':'LOW'} at the final sample, and switches when it crosses the ${threshold.toFixed(1)} V decision threshold.`;
+  }
+  ['wave-f','wave-th'].forEach(id=>$(id).addEventListener('input',updateAnalog));
+  updateAnalog();
+
+  // UTILITY DRAWING HELPERS FOR READABLE, CONNECTED CIRCUIT SYMBOLS
+  const wire=(path,hot=false)=>`<path d="${path}" class="de-svg-wire ${hot?'de-svg-active':''}"/>`;
+  const txt=(x,y,value,cls='de-svg-label',anchor='start')=>`<text x="${x}" y="${y}" class="${cls}" text-anchor="${anchor}">${value}</text>`;
+  const light=(x,y,value,hot)=>`<circle cx="${x}" cy="${y}" r="19" class="${hot?'de-io-on':'de-io-off'}"/><text x="${x}" y="${y+6}" class="de-value-label" text-anchor="middle">${value}</text>`;
+  const svgBG=(w,h)=>`<rect x="5" y="5" width="${w-10}" height="${h-10}" rx="16" class="de-svg-fill-soft"/>`;
+  let d=0,q=0,edgeCount=0,lastDffEvent='hold';
+  function renderDff(){
+    const qb=1-q;
+    const ink=svgBG(860,300) +
+      wire('M80 104 H300',!!d) + wire('M80 214 H300') + wire('M560 112 H755',!!q) + wire('M560 192 H755',!!qb) +
+      `<rect x="300" y="36" width="260" height="222" rx="2" class="de-svg-outline"/>`+
+      `<path d="M300 195 L322 214 L300 233" class="de-svg-pin"/>`+
+      txt(423,68,'D FLIP-FLOP','de-svg-title','middle') +
+      txt(320,111,'D')+txt(324,221,'CK')+txt(505,118,'Q')+txt(505,200,'Q̅')+
+      txt(26,110,'D')+txt(26,219,'CK') +txt(772,117,'Q')+txt(772,197,'Q̅')+
+      light(190,104,d,!!d)+light(668,112,q,!!q)+light(668,192,qb,!!qb);
+    renderSvg('dff-diagram',ink);
+    $('qbar-bit').textContent=qb;
+    const rows=[['Stable / no edge','X','Q (hold)','Q̅ (hold)','hold'],['Rising edge (↑)','0','0','1','cap0'],['Rising edge (↑)','1','1','0','cap1']];
+    $('dff-state-table').innerHTML='<table><thead><tr><th>Clock condition</th><th>D</th><th>Next Q</th><th>Next Q̅</th></tr></thead><tbody>'+rows.map(r=>`<tr class="${r[4]===lastDffEvent?'de-dff-row-active':''}"><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join('')+'</tbody></table>';
+  }
+  function updateD(msg){$('d-toggle').textContent='D = '+d;$('d-bit').textContent=d;$('q-bit').textContent=q;$('d-status').textContent=msg||`Q retains ${q} until the next rising edge.`;renderDff();}
+  $('d-toggle').addEventListener('click',()=>{d^=1;lastDffEvent='hold';updateD(`D is ${d}, while Q remains ${q}. The next rising clock edge will capture D.`);});
+  $('d-clock').addEventListener('click',()=>{q=d;edgeCount++;lastDffEvent=q?'cap1':'cap0';updateD(`Rising edge ${edgeCount}: D=${d} sampled, Q=${q}, Q̅=${1-q}.`);});
+  $('d-reset').addEventListener('click',()=>{q=0;edgeCount=0;lastDffEvent='hold';updateD('Teaching model reset: Q=0, Q̅=1. No reset pin is implied in the diagram.');});
+  updateD();
+  function updateVoltage(){
+    const v=+$('v-slider').value,mode=$('logic-mode').value;
+    let state,meaning;
+    if(v<=0.8){state='LOW';meaning=mode==='positive'?0:1;}
+    else if(v>=2.0){state='HIGH';meaning=mode==='positive'?1:0;}
+    else{state='INDETERMINATE';meaning='undefined in this voltage band';}
+    $('v-label').textContent=v.toFixed(2)+' V';
+    const pos=$('v-position-marker');
+    pos.style.left=(100*v/5)+'%';
+    $('v-marker-label').textContent=v.toFixed(2)+' V';
+    const lbl=$('v-marker-label');
+    lbl.style.transform=v<0.35?'translateX(0)':v>4.65?'translateX(-100%)':'translateX(-50%)';
+    $('v-state').textContent = state==='INDETERMINATE'
+      ? `${v.toFixed(2)} V lies in the 0.8–2.0 V indeterminate region. No reliable binary value is guaranteed.`
+      : `${v.toFixed(2)} V is a valid ${state} input; under ${mode} logic it represents ${meaning}.`;
+  }
+  ['v-slider','logic-mode'].forEach(id=>$(id).addEventListener('input',updateVoltage));
+  document.querySelectorAll('[data-voltage-preset]').forEach(btn=>btn.addEventListener('click',()=>{
+    $('v-slider').value=btn.getAttribute('data-voltage-preset');updateVoltage();
+  }));
+  updateVoltage();
+  function metric(k,v){return `<div class="de-metric"><span>${k}</span><strong>${v}</strong></div>`;}
+  function updateClock(){
+    const f=+$('clock-frequency').value,duty=+$('clock-duty').value,T=1000/f; // ns at MHz
+    $('freq-label').textContent=f+' MHz';$('duty-label').textContent=duty+'%';
+    const width=600,cycle=width/4,hi=cycle*duty/100;
+    let d='M52 143';for(let i=0;i<4;i++){const x=52+i*cycle;d+=` L${x} 143 L${x} 43 L${x+hi} 43 L${x+hi} 143 L${x+cycle} 143`;}
+    let grid='';for(let i=0;i<=4;i++){const x=52+i*cycle;grid+=`<path d="M${x} 24 V163" stroke="currentColor" stroke-dasharray="3 5" stroke-opacity=".24"/><text x="${x+4}" y="179" font-size="11" fill="currentColor">${i}T</text>`;}
+    renderSvg('clock-chart',`<text x="16" y="46" fill="currentColor" font-size="13">HIGH</text><text x="16" y="145" fill="currentColor" font-size="13">LOW</text>${grid}<path d="${d}" fill="none" stroke="#148f7b" stroke-width="4"/>`);
+    $('clock-metrics').innerHTML=metric('Period',T.toFixed(2)+' ns')+metric('High time',(T*duty/100).toFixed(2)+' ns')+metric('Low time',(T*(100-duty)/100).toFixed(2)+' ns');
+  }
+  ['clock-frequency','clock-duty'].forEach(id=>$(id).addEventListener('input',updateClock));updateClock();
+
+  let a=0,b=0;
+  function gateValue(type,x,y){switch(type){case 'AND':return x&y;case 'OR':return x|y;case 'NOT A':return 1-x;case 'NAND':return 1-(x&y);case 'NOR':return 1-(x|y);case 'XOR':return x^y;case 'XNOR':return 1-(x^y);}return 0;}
+  function symbolShape(type,x,y,scale=1){
+    // Body assumes main gate inputs at y=100,174 in the main view. All connections reach the body.
+    if(type==='NOT A') return `<path d="M315 77 L315 182 L458 130 Z" class="de-svg-outline"/>`;
+    if(type==='AND'||type==='NAND') return `<path d="M300 56 H394 A74 74 0 0 1 394 204 H300 Z" class="de-svg-outline"/>`;
+    const main=`<path d="M280 55 Q340 130 280 205 Q407 210 504 130 Q407 50 280 55 Z" class="de-svg-outline"/>`;
+    return main+(type==='XOR'||type==='XNOR'?`<path d="M256 55 Q317 130 256 205" class="de-svg-pin"/>`:'');
+  }
+  function gateSymbolCard(type){
+    const shapes={AND:'M42 17 H73 A20 20 0 0 1 73 57 H42 Z',NAND:'M42 17 H73 A20 20 0 0 1 73 57 H42 Z',OR:'M40 17 Q56 37 40 57 Q76 59 101 37 Q76 15 40 17 Z',NOR:'M40 17 Q56 37 40 57 Q76 59 101 37 Q76 15 40 17 Z',XOR:'M42 17 Q58 37 42 57 Q78 59 102 37 Q78 15 42 17 Z',XNOR:'M42 17 Q58 37 42 57 Q78 59 102 37 Q78 15 42 17 Z',NOT:'M47 17 L47 57 L91 37 Z'};
+    const invert=['NAND','NOR','XNOR','NOT'].includes(type), right=type==='AND'||type==='NAND'?93:type==='NOT'?96:108;
+    const bubbleX=type==='NOT'?100:type==='NAND'?98:invert?111:0;
+    const inYs=type==='NOT'?[37]:[28,47];
+    let wires=inYs.map(y=>`<path d="M12 ${y} H73" class="de-symbol-wire"/>`).join('');
+    wires+=`<path d="M${invert?bubbleX+5:right} 37 H139" class="de-symbol-wire"/>`;
+    return `<div class="de-symbol-card"><svg viewBox="0 0 145 76" role="img" aria-label="${type} symbol">${wires}<path d="${shapes[type]}" class="de-symbol-body"/>${['XOR','XNOR'].includes(type)?'<path d="M32 17 Q49 37 32 57" class="de-symbol-pin"/>':''}${invert?`<circle cx="${bubbleX}" cy="37" r="5" class="de-symbol-body"/>`:''}</svg><span>${type}</span></div>`;
+  }
+  $('gate-symbol-grid').innerHTML=['AND','OR','NOT','NAND','NOR','XOR','XNOR'].map(gateSymbolCard).join('');
+  function updateGate(){
+    const type=$('gate-type').value, y=gateValue(type,a,b), isNot=type==='NOT A', invert=['NOT A','NAND','NOR','XNOR'].includes(type);
+    $('gate-a').textContent='A = '+a;$('gate-b').textContent='B = '+b;$('gate-b').disabled=isNot;
+    $('gate-out').textContent=isNot?`NOT A: output ${y} (inverts A=${a}).`:`${type}: output ${y} for A=${a}, B=${b}.`;
+    const point=isNot?458:['AND','NAND'].includes(type)?468:504;
+    const bubbleX=point+15, begin=invert?bubbleX+12:point, port=isNot?315:340;
+    const wirePort=isNot?315:['AND','NAND'].includes(type)?300:['XOR','XNOR'].includes(type)?282:303;
+    const mainWires=isNot?wire(`M116 130 H${wirePort}`,!!a):wire(`M116 100 H${wirePort}`,!!a)+wire(`M116 174 H${wirePort}`,!!b);
+    renderSvg('gate-diagram',svgBG(850,255)+mainWires+wire(`M${begin} 130 H785`,!!y)+symbolShape(type)+
+      (invert?`<circle cx="${bubbleX}" cy="130" r="12" class="de-svg-outline"/>`:'')+
+      txt(420,36,type==='NOT A'?'NOT':type,'de-svg-title','middle')+
+      txt(34,isNot?136:106,`A = ${a}`)+ (isNot?'':txt(34,180,`B = ${b}`))+
+      txt(706,114,`Y = ${y}`));
+    let rows=isNot?[[0,'—',1],[1,'—',0]]:[[0,0,gateValue(type,0,0)],[0,1,gateValue(type,0,1)],[1,0,gateValue(type,1,0)],[1,1,gateValue(type,1,1)]];
+    $('gate-table').innerHTML='<table><thead><tr><th>A</th><th>B</th><th>Y</th></tr></thead><tbody>'+rows.map(r=>`<tr class="${r[0]===a&&(isNot||r[1]===b)?'de-dff-row-active':''}">${r.map(v=>`<td>${v}</td>`).join('')}</tr>`).join('')+'</tbody></table>';
+  }
+  $('gate-a').addEventListener('click',()=>{a^=1;updateGate();});
+  $('gate-b').addEventListener('click',()=>{b^=1;updateGate();});
+  $('gate-type').addEventListener('change',updateGate);
+  updateGate();
+  function updateArithmetic(){
+    const a=+$('op-a').value,b=+$('op-b').value,ci=+$('carry-in').value, sum=a+b+ci;
+    $('op-a-label').textContent=a+' ('+bin(a)+')';$('op-b-label').textContent=b+' ('+bin(b)+')';
+    $('arith-stats').innerHTML=metric('A + B + carry',sum+' / '+bin(sum,5))+metric('Carry out',Math.floor(sum/16))+metric('Difference A − B',a-b)+metric('Comparator',a===b?'A = B':a>b?'A > B':'A < B');
+  }
+  ['op-a','op-b','carry-in'].forEach(id=>$(id).addEventListener('input',updateArithmetic));updateArithmetic();
+  // Separate interactive encoder and decoder; truth tables are independent.
+  function updateEncoder(){
+    const n=+$('enc-input').value,bits=bin(n,2),ys=[92,136,180,224];
+    const body=`<rect x="296" y="44" width="248" height="214" rx="9" class="de-svg-outline"/>`;
+    let paths=ys.map((y,i)=>wire(`M94 ${y} H296`,i===n)).join('');
+    paths+=wire('M544 135 H754',bits[0]==='1')+wire('M544 201 H754',bits[1]==='1');
+    let labels=ys.map((y,i)=>txt(22,y+6,`D${i}`)+light(185,y,i===n?1:0,i===n)).join('');
+    labels+=light(665,135,+bits[0],bits[0]==='1')+light(665,201,+bits[1],bits[1]==='1');
+    renderSvg('encoder-diagram',svgBG(850,300)+paths+body+labels+txt(420,92,'4 → 2 ENCODER','de-svg-title','middle')+
+      txt(420,125,'One-hot, active-HIGH','de-svg-small','middle')+
+      txt(495,139,'A1')+txt(495,205,'A0')+txt(761,140,'A1')+txt(761,206,'A0'));
+    $('enc-description').textContent=`Active input D${n} produces output A1A0 = ${bits}. Only one input may be asserted at a time.`;
+    $('enc-table').innerHTML='<table><thead><tr><th>D3</th><th>D2</th><th>D1</th><th>D0</th><th>A1</th><th>A0</th></tr></thead><tbody>'+Array.from({length:4},(_,i)=>{const bb=bin(i,2);return `<tr class="${i===n?'de-dff-row-active':''}"><td>${+(i===3)}</td><td>${+(i===2)}</td><td>${+(i===1)}</td><td>${+(i===0)}</td><td>${bb[0]}</td><td>${bb[1]}</td></tr>`;}).join('')+'</tbody></table>';
+  }
+  $('enc-input').addEventListener('change',updateEncoder);updateEncoder();
+  let decEnabled=1;
+  function updateDecoder(){
+    const n=+$('dec-input').value,bits=bin(n,2),ys=[66,117,168,219];
+    let paths=wire('M90 105 H293',bits[0]==='1')+wire('M90 176 H293',bits[1]==='1')+wire('M419 258 V288',!!decEnabled);
+    paths+=ys.map((y,i)=>wire(`M546 ${y} H755`,decEnabled&&i===n)).join('');
+    let labels=light(182,105,+bits[0],bits[0]==='1')+light(182,176,+bits[1],bits[1]==='1')+
+       ys.map((y,i)=>light(670,y,+(decEnabled&&i===n),!!(decEnabled&&i===n))+txt(764,y+6,`Y${i}`)).join('')+
+       txt(24,111,'A1')+txt(24,182,'A0')+txt(383,293,'Enable E','de-svg-small','end');
+    renderSvg('decoder-diagram',svgBG(850,305)+paths+`<rect x="293" y="28" width="253" height="230" rx="9" class="de-svg-outline"/>`+
+       txt(420,92,'2 → 4 DECODER','de-svg-title','middle')+txt(420,125,'Active-HIGH outputs','de-svg-small','middle')+
+       txt(313,111,'A1')+txt(313,182,'A0')+txt(416,244,'E','de-svg-label','middle')+
+       light(419,285,decEnabled,!!decEnabled)+labels);
+    $('dec-enable').textContent=`Enable E = ${decEnabled}`;$('dec-enable').setAttribute('aria-pressed',String(!!decEnabled));
+    $('dec-description').textContent=decEnabled?`A1A0=${bits}; only Y${n} is HIGH.`:`E=0 disables every output, regardless of A1A0=${bits}.`;
+    const rows=[];
+    for(let i=0;i<4;i++)rows.push([1,...bin(i,2).split(''),...Array.from({length:4},(_,j)=>+(j===i))]);
+    rows.push([0,'X','X',0,0,0,0]);
+    $('dec-table').innerHTML='<table><thead><tr><th>E</th><th>A1</th><th>A0</th><th>Y0</th><th>Y1</th><th>Y2</th><th>Y3</th></tr></thead><tbody>'+rows.map((r,i)=>`<tr class="${(decEnabled&&i===n)||(!decEnabled&&i===4)?'de-dff-row-active':''}">${r.map(v=>`<td>${v}</td>`).join('')}</tr>`).join('')+'</tbody></table>';
+  }
+  $('dec-input').addEventListener('change',updateDecoder);
+  $('dec-enable').addEventListener('click',()=>{decEnabled^=1;updateDecoder();});updateDecoder();
+  // Four data inputs, two explicit select pins (S1/S0), and active-high enable (EN).
+  let muxValues=[0,1,0,1], muxEnable=1;
+  function updateMux(){
+    const sel=Number($('mux-select').value), bits=bin(sel,2), output=muxEnable?muxValues[sel]:0;
+    $('mux-enable').textContent=`Enable EN = ${muxEnable}`;
+    $('mux-enable').setAttribute('aria-pressed',String(!!muxEnable));
+    $('mux-switches').innerHTML=muxValues.map((v,i)=>`<button type="button" class="de-button ${muxEnable&&i===sel?'':'alt'}" data-mux-bit="${i}" aria-label="Toggle D${i}">D${i} = ${v}${i===sel?' · selected':''}</button>`).join('');
+    $('mux-enable-state').textContent=muxEnable;
+    $('mux-select-bits').textContent=bits;
+    $('mux-output').textContent=output;
+    $('mux-description').textContent=muxEnable
+      ? `EN=1, S1S0=${bits}; the selected data input D${sel}=${muxValues[sel]} is connected logically to output Y=${output}.`
+      : 'EN=0; output Y=0 independently of S1, S0 and the data inputs (active-HIGH enable).';
+
+    // Sloping symbol bottom y(x) = 340 - (x-316)*(68/294).
+    // Every external control wire ends exactly at its corresponding bottom pin.
+    const bottomY=x=>340-(x-316)*68/294;
+    const ctrl=[{x:386,label:'S1',value:Number(bits[0]),hot:bits[0]==='1'},
+                {x:472,label:'S0',value:Number(bits[1]),hot:bits[1]==='1'},
+                {x:555,label:'EN',value:muxEnable,hot:!!muxEnable}];
+    const inputYs=[90,151,212,273];
+    const inputs=inputYs.map((y,i)=>wire(`M82 ${y} H316`,!!(muxEnable&&i===sel))+txt(19,y+6,`D${i}=${muxValues[i]}`)+light(184,y,muxValues[i],!!muxValues[i])).join('');
+    const controls=ctrl.map(c=>wire(`M${c.x} 386 V${bottomY(c.x).toFixed(2)}`,c.hot)+light(c.x,395,c.value,c.hot)).join('');
+    const body='<path d="M316 38 L610 115 V272 L316 340 Z" class="de-svg-outline"/>';
+    const inPinLabels=inputYs.map((y,i)=>txt(330,y-8,`D${i}`,'de-svg-small')).join('');
+    const controlLabels=ctrl.map(c=>txt(c.x,bottomY(c.x)-23,c.label,'de-svg-pinlabel','middle')).join('');
+    renderSvg('mux-diagram',svgBG(860,460)+
+      inputs+controls+wire('M610 195 H816',!!output)+body+
+      inPinLabels+controlLabels+
+      txt(458,150,'4 : 1 MUX','de-svg-title','middle')+
+      txt(458,180,'ACTIVE-HIGH ENABLE','de-svg-small','middle')+
+      txt(427,236,'SEL','de-svg-small','middle')+
+      txt(630,184,'Y','de-svg-label')+light(720,195,output,!!output)+txt(758,178,`Y=${output}`)+
+      txt(386,447,'select bit 1','de-svg-small','middle')+
+      txt(472,447,'select bit 0','de-svg-small','middle')+
+      txt(555,447,'enable','de-svg-small','middle'));
+    const rows=[];
+    for(let i=0;i<4;i++)rows.push([1,bin(i,2),`D${i}`,muxValues[i]]);
+    rows.push([0,'XX','disabled',0]);
+    $('mux-table').innerHTML='<table><thead><tr><th>EN</th><th>S1S0</th><th>Selected</th><th>Y</th></tr></thead><tbody>'+rows.map((r,i)=>`<tr class="${muxEnable?(i===sel?'de-dff-row-active':''):(i===4?'de-dff-row-active':'')}">${r.map(v=>`<td>${v}</td>`).join('')}</tr>`).join('')+'</tbody></table>';
+  }
+  $('mux-select').addEventListener('change',updateMux);
+  $('mux-enable').addEventListener('click',()=>{muxEnable^=1;updateMux();});
+  $('mux-switches').addEventListener('click',event=>{const button=event.target.closest('[data-mux-bit]');if(!button)return;muxValues[Number(button.dataset.muxBit)]^=1;updateMux();});
+  updateMux();
+  let shift=[0,0,0,0],count=0,steps=0;
+  function updateRegister(){
+    $('shift-register').innerHTML=shift.map(v=>`<span>${v}</span>`).join('');
+    $('register-metrics').innerHTML=metric('Clock steps',steps)+metric('Modulo-4 count',count+' ('+bin(count,2)+')')+metric('State divider','÷4 cycle');
+  }
+  $('step-clock').addEventListener('click',()=>{shift=[+$('serial-in').value,...shift.slice(0,3)];count=(count+1)%4;steps++;updateRegister();});
+  $('reset-count').addEventListener('click',()=>{shift=[0,0,0,0];count=0;steps=0;updateRegister();});updateRegister();
+  function updateTx(){
+    const value=+$('tx-byte').value,bits=bin(value,8),sw=57,xstart=210;
+    // Illustrative synchronous serial framing: 8 one-bit time slots, MSB first.
+    let dataPath=`M150 ${bits[0]==='1'?113:173} H${xstart}`;
+    for(let i=0;i<8;i++){
+      const xx=xstart+i*sw, yy=bits[i]==='1'?113:173;
+      if(i>0)dataPath+=` V${yy}`;
+      dataPath+=` H${xx+sw}`;
+    }
+    dataPath+=' H730';
+    let clk='M210 278';
+    for(let i=0;i<8;i++){const xx=210+i*sw;clk+=` L${xx} 278 L${xx} 245 L${xx+sw/2} 245 L${xx+sw/2} 278 L${xx+sw} 278`;}
+    const boxes=`<rect x="20" y="79" width="130" height="164" rx="12" class="de-svg-outline"/><rect x="730" y="79" width="130" height="164" rx="12" class="de-svg-outline"/>`;
+    const stamps=Array.from({length:8},(_,i)=>txt(xstart+i*sw+sw/2,76,`${bits[i]}`,'de-svg-label','middle')+txt(xstart+i*sw+sw/2,218,`${7-i}`,'de-svg-small','middle')).join('');
+    renderSvg('serial-diagram',svgBG(880,315)+boxes+`<path d="${dataPath}" class="de-svg-wave-data"/><path d="${clk}" class="de-svg-wave-clock"/>`+
+      Array.from({length:9},(_,i)=>`<line x1="${xstart+i*sw}" y1="90" x2="${xstart+i*sw}" y2="197" class="de-svg-guideline"/>`).join('')+
+      txt(85,132,'SERIAL','de-svg-title','middle')+txt(85,160,'TX','de-svg-title','middle')+txt(795,132,'SERIAL','de-svg-title','middle')+txt(795,160,'RX','de-svg-title','middle')+
+      txt(170,106,'DATA','de-svg-small')+txt(170,269,'CLK','de-svg-small')+txt(440,45,'1 bit per time slot','de-svg-title','middle')+
+      txt(210,232,'MSB','de-svg-small')+txt(666,232,'LSB','de-svg-small','end')+stamps);
+    const ys=Array.from({length:8},(_,i)=>68+37*i);
+    renderSvg('parallel-diagram',svgBG(880,405)+`<rect x="24" y="42" width="146" height="345" rx="12" class="de-svg-outline"/><rect x="710" y="42" width="146" height="345" rx="12" class="de-svg-outline"/>`+
+      ys.map((y,i)=>wire(`M170 ${y} H710`,bits[i]==='1')+txt(192,y-10,`Bit ${7-i}`,'de-svg-small')+light(438,y,+bits[i],bits[i]==='1')).join('')+
+      wire('M170 364 H710')+txt(192,358,'CLK / strobe','de-svg-small')+
+      txt(96,195,'PARALLEL','de-svg-title','middle')+txt(96,224,'TX','de-svg-title','middle')+
+      txt(783,195,'PARALLEL','de-svg-title','middle')+txt(783,224,'RX','de-svg-title','middle'));
+    $('tx-graphic').innerHTML=`<div class="de-metric"><span>8-bit sample</span><strong>${bits}</strong></div><div class="de-metric"><span>Byte (hex)</span><strong>0x${value.toString(16).toUpperCase().padStart(2,'0')}</strong></div><div class="de-metric"><span>Serial</span><strong>8 data-bit intervals</strong></div><div class="de-metric"><span>Parallel</span><strong>1 data transfer beat</strong></div>`;
+    $('tx-caption').textContent=`Both diagrams carry the same value, ${bits}. The serial illustration sends the leftmost bit first (MSB-first); actual protocol bit order varies. The parallel illustration places all eight bits on eight separate wires in one transfer beat.`;
+  }
+  $('tx-byte').addEventListener('change',updateTx);updateTx();
+  $$('.de-code-tab').forEach(btn=>btn.addEventListener('click',()=>{const lang=btn.dataset.lang;$$('.de-code-tab').forEach(b=>b.classList.toggle('active',b===btn));$$('.de-code-panel').forEach(p=>p.hidden=p.dataset.codePanel!==lang);}));
+  $$('.de-copy').forEach(btn=>btn.addEventListener('click',()=>{const el=$('code-'+btn.dataset.copy);const code=el.innerText;
+    const old=btn.textContent;
+    if(navigator.clipboard?.writeText) navigator.clipboard.writeText(code).then(()=>{btn.textContent='Copied ✓';setTimeout(()=>btn.textContent=old,1400);}).catch(()=>{btn.textContent='Select text to copy';});
+    else {const selection=window.getSelection();selection?.selectAllChildren(el);btn.textContent='Select text to copy';}
+  }));
+  const questions=[
+    ['A microphone output follows speech loudness continuously. Which interpretation fits?', ['Analog','Binary counter output','Memory address'],0,'Continuous electrical magnitude is an analog representation.'],
+    ['Which circuit depends only on present inputs?', ['Shift register','Multiplexer','Counter'],1,'A multiplexer is combinational; its selection immediately determines the chosen input.'],
+    ['When does a rising-edge D flip-flop normally capture D?', ['At an active rising clock edge','Whenever D changes','Only at power-off'],0,'Clocked state updates occur at their active edge subject to timing requirements.'],
+    ['In positive logic, a valid HIGH voltage means:', ['Logic 0','Not specified','Logic 1'],2,'Higher recognized voltage means logic 1 in positive logic.'],
+    ['A signal has period 100 ns. Its frequency is:', ['1 MHz','10 MHz','100 MHz'],1,'1/(100 ns) = 10 MHz.'],
+    ['A 50 ns period clock has 20 ns HIGH time. Duty cycle is:', ['40%','20%','60%'],0,'20 / 50 × 100 = 40%.'],
+    ['Which logic function gives 1 only if inputs differ?', ['AND','XNOR','XOR'],2,'XOR is true for exactly one asserted input in the two-input case.'],
+    ['A 4-to-1 multiplexer requires how many select bits?', ['1','2','4'],1,'Two binary select bits encode four possibilities.'],
+    ['An input one-hot word 0100 in a 4-to-2 encoder becomes:', ['10','01','11'],0,'D2 is asserted, which encodes index 2 = binary 10.'],
+    ['Which component is primarily used to hold multiple bits?', ['Comparator','Register','Decoder'],1,'A register consists of state-holding elements.'],
+    ['Which bus typically carries addresses from a processor?', ['Address bus','Audio bus','Pixel color bus'],0,'Address paths specify source/destination locations.'],
+    ['Why are ADCs important in hybrid systems?', ['They store the program','They increase supply voltage','They turn measurements into digital data'],2,'ADCs create digital representations of measured analog quantities.']
+  ];
+  let answers={};
+  function renderQuiz(){answers={};$('quiz-score').innerHTML='';$('quiz-questions').innerHTML=questions.map((q,i)=>`<div class="de-question" data-question="${i}"><h3>${i+1}. ${q[0]}</h3>${q[1].map((o,j)=>`<label><input type="radio" name="question-${i}" value="${j}"><span>${o}</span></label>`).join('')}<div class="de-feedback" id="quiz-feedback-${i}" hidden></div></div>`).join('');$('quiz-counter').textContent=`0 / ${questions.length} answered`;}
+  $('quiz-questions').addEventListener('change',e=>{if(e.target.matches('input[type=radio]')){answers[+e.target.name.split('-')[1]]=+e.target.value;$('quiz-counter').textContent=`${Object.keys(answers).length} / ${questions.length} answered`;$('quiz-score').innerHTML='';}});
+  $('grade-quiz').addEventListener('click',()=>{
+    let correct=0;questions.forEach((q,i)=>{const feedback=$('quiz-feedback-'+i);const has=Object.hasOwn(answers,i);const ok=has&&answers[i]===q[2];if(ok)correct++;feedback.hidden=false;feedback.className='de-feedback '+(ok?'right':'wrong');feedback.textContent=(ok?'✓ Correct. ':!has?'Not answered. ':'Not quite. ')+q[3];});
+    $('quiz-score').innerHTML=`<h3>Your result: ${correct} / ${questions.length}</h3><p>${correct===questions.length?'Excellent—your unit foundations are ready for more advanced topics.':'Review the explanations above, then try again when ready.'}</p>`;
+  });
+  $('reset-quiz').addEventListener('click',renderQuiz);renderQuiz();
+})();
+
+</script>
+<script defer=""  data-bundled-from="digital-electronics-advanced.js">
+/* ASIC-Skill Unit 01 v37.0.66: selectable, interactive native learning material */
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const all = sel => [...document.querySelectorAll(sel)];
+  const binary = (n,bits=4) => Math.max(0,n).toString(2).padStart(bits,'0');
+  const escapeHtml = value => String(value).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+
+  // Page 5: clock versus event sensitive storage. The event model is an illustrative simplified model.
+  let d=0,sync=0,asyncState=0;
+  function renderStates(message){
+    if(!$('compare-d'))return;
+    $('compare-d').textContent=d;$('compare-q').textContent=sync;$('compare-async').textContent=asyncState;
+    $('compare-change').textContent=`Change input to ${1-d}`;
+    $('compare-caption').textContent=message;
+  }
+  $('compare-change')?.addEventListener('click',()=>{
+    d^=1;asyncState=d;
+    renderStates(`Input changed to ${d}: the event-responsive model follows it now, while the clocked flip-flop still holds ${sync}.`);
+  });
+  $('compare-clock')?.addEventListener('click',()=>{sync=d;renderStates(`A rising edge captures D=${d}; clocked Q becomes ${sync}.`);});
+  $('compare-clear')?.addEventListener('click',()=>{d=0;sync=0;asyncState=0;renderStates('Both simplified examples are reset to zero.');});
+  renderStates('Both examples begin at zero.');
+
+  // Page 6: a 4-bit accumulator traced through the three design abstraction levels.
+  let selectedLevel='system';
+  const levelContent={
+    system:(a,b,sum)=>`<h3>System · behavioral specification</h3><p>Operation: <strong>Acc ← Acc + In</strong>. The input value is <strong>${a}</strong> and the prior accumulated value is <strong>${b}</strong>. The result before truncation is <strong>${sum}</strong>. At the interface, a four-bit register retains <strong>${sum&15} (${binary(sum&15)})</strong> and the carry flag reports <strong>${sum>15?1:0}</strong>.</p>`,
+    logic:(a,b,sum)=>`<h3>Logic · add-and-register datapath</h3><p>Four full-adder stages add <code>${binary(b)}</code> and <code>${binary(a)}</code>. The carry chain produces <code>${binary(sum,5)}</code> (5-bit result). On the next enabled rising edge, the register captures its lower four bits <code>${binary(sum&15)}</code>; the fifth bit is the optional carry output.</p>`,
+    circuit:(a,b,sum)=>`<h3>Circuit · physical realization</h3><p>Technology cells implement XOR and carry logic, plus flip-flops for Acc[3:0]. Setup/hold, clock-to-Q, power, output load and the interconnect delay of the carry path must be checked. These constraints matter regardless of whether the current arithmetic inputs are ${a} and ${b}.</p>`
+  };
+  function updateAccumulator(){
+    if(!$('acc-level-content'))return;
+    const input=Number($('acc-in').value),old=Number($('acc-start').value),sum=input+old;
+    $('acc-in-text').textContent=`${input} (${binary(input)})`;
+    $('acc-start-text').textContent=`${old} (${binary(old)})`;
+    $('acc-level-content').innerHTML=levelContent[selectedLevel](input,old,sum);
+    all('.de-level-btn').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.level===selectedLevel)));
+  }
+  ['acc-in','acc-start'].forEach(id=>$(id)?.addEventListener('input',updateAccumulator));
+  all('.de-level-btn').forEach(btn=>btn.addEventListener('click',()=>{selectedLevel=btn.dataset.level;updateAccumulator();}));
+  updateAccumulator();
+
+  // Page 10: binary arithmetic, comparison and step explanations, driven by existing sliders.
+  const opList={add:['4-bit Adder','Sum[3:0], Cout'],subtract:['4-bit Subtractor','Diff[3:0], Borrow'],multiply:['4-bit Multiplier','Product[7:0]'],divide:['4-bit Divider','Quotient[3:0], Remainder[3:0]'],compare:['4-bit Comparator','A > B, A = B, A < B']};
+  let activeOp='add';
+  function outputCard(label,value){return `<div><small>${escapeHtml(label)}</small><strong>${escapeHtml(value)}</strong></div>`;}
+  function renderOpSvg(op,a,b,summary){
+    const [title,output]=opList[op];
+    const label=escapeHtml(title), out=escapeHtml(output), value=escapeHtml(summary);
+    const svg=`<rect x="10" y="10" width="690" height="240" rx="16" fill="var(--soft)" stroke="var(--line)"/>
+      <g stroke="var(--green)" stroke-width="3.5" fill="none"><path d="M26 83 H234"/><path d="M26 153 H234"/><path d="M467 112 H683"/></g>
+      <g fill="var(--paper)" stroke="var(--ink)" stroke-width="3"><rect x="234" y="47" width="233" height="139" rx="14"/></g>
+      <g fill="var(--ink)" font-family="system-ui,sans-serif"><text x="24" y="67" font-size="18" font-weight="750">A[3:0] = ${binary(a)}</text><text x="24" y="137" font-size="18" font-weight="750">B[3:0] = ${binary(b)}</text><text x="262" y="97" font-size="23" font-weight="800">${label}</text><text x="253" y="135" font-size="15">${out}</text><text x="494" y="86" font-size="17" font-weight="750">Result</text><text x="484" y="142" font-size="19" font-weight="800">${value}</text><text x="258" y="210" font-size="13" fill="var(--muted)">Live 4-bit datapath</text></g>`;
+    $('arithmetic-logic-diagram').innerHTML=svg;
+    $('op-figure-heading').textContent=title;
+  }
+  function resultDetails(a,b,ci){
+    const rawAdd=a+b+ci,sum=rawAdd&15,carry=(rawAdd>>4)&1;
+    const diff=a-b,wrapDiff=(diff+16)%16,borrow=a<b?1:0;
+    const prod=a*b;
+    const q=b?Math.floor(a/b):null,r=b?a%b:null;
+    const comp=a>b?'A > B':a===b?'A = B':'A < B';
+    return {
+      add:{sum:`${binary(rawAdd,5)}`,data:[['A',''+binary(a)],['B',binary(b)],['Carry in',ci],['Full result',binary(rawAdd,5)],['Sum[3:0]',binary(sum)],['Carry out',carry]],steps:[`A = ${a} (${binary(a)}), B = ${b} (${binary(b)}), Cin = ${ci}.`,`Add the two 4-bit numbers and carry-in: ${a} + ${b} + ${ci} = ${rawAdd}.`,`The complete five-bit result is ${binary(rawAdd,5)}; low four bits ${binary(sum)} are Sum[3:0], and Cout = ${carry}.`],concept:'A ripple-carry adder chains four full adders. Carry propagates from lower to higher positions; the result has five bits including Cout.'},
+      subtract:{sum:binary(wrapDiff),data:[['A',binary(a)],['B',binary(b)],['Signed arithmetic result',diff],['4-bit difference',binary(wrapDiff)],['Borrow out',borrow],['Two’s complement of B',binary((16-b)&15)]],steps:[`Start with A=${a} and B=${b}.`,`Use two’s complement subtraction: A + (~B + 1), truncated to four bits.`,`Difference bits = ${binary(wrapDiff)}; unsigned borrow out = ${borrow}. The signed mathematical difference is ${diff}.`],concept:'Subtraction can reuse an adder by inverting each B bit and setting carry-in to 1. A negative result wraps in unsigned four-bit representation; borrow indicates A was smaller than B.'},
+      multiply:{sum:binary(prod,8),data:[['A',binary(a)],['B',binary(b)],['Product (decimal)',prod],['Product[7:0]',binary(prod,8)]],steps:[`Multiplier B=${binary(b)} specifies shifted copies of multiplicand A=${binary(a)}.`,...Array.from({length:4},(_,i)=>`Bit B${i}=${(b>>i)&1}: partial product ${binary(((b>>i)&1)?(a<<i):0,8)} (${((b>>i)&1)?(a<<i):0}).`),`Summing partial products gives ${prod} = ${binary(prod,8)}.`],concept:'For two unsigned 4-bit operands, an 8-bit output can represent every product (maximum 15 × 15 = 225). Shift-and-add illustrates how combinational multipliers work.'},
+      divide:{sum:b?binary(q):'undefined',data:[['Dividend A',binary(a)],['Divisor B',binary(b)],['Quotient',q===null?'undefined':`${q} (${binary(q)})`],['Remainder',r===null?'undefined':`${r} (${binary(r)})`]],steps:b?[`Unsigned division: ${a} ÷ ${b}.`,`The largest whole-number quotient satisfying B × Q ≤ A is ${q}.`,`Remainder R = ${a} − ${b} × ${q} = ${r}.`,`Check: ${b} × ${q} + ${r} = ${a}.`]:['The divisor is zero; division is undefined. Choose a nonzero B to proceed.'],concept:'A divider produces quotient and remainder. A = B·Q + R, where 0 ≤ R < B for positive unsigned divisor B. Hardware can implement repeated compare, subtract and shift.'},
+      compare:{sum:comp,data:[['A',a],['B',b],['A > B',Number(a>b)],['A = B',Number(a===b)],['A < B',Number(a<b)]],steps:[`Compare ${a} (${binary(a)}) with ${b} (${binary(b)}).`,`Only one of three mutually exclusive magnitude relations can be true.`,`Result: ${comp}.`],concept:'A magnitude comparator implements >, =, <, often by inspecting the most significant unequal bit or by reusing subtraction-related logic.'}
+    };
+  }
+  function updateOp(){
+    if(!$('arithmetic-workbench'))return;
+    const a=Number($('op-a').value),b=Number($('op-b').value),ci=Number($('carry-in').value);
+    const details=resultDetails(a,b,ci)[activeOp];
+    $('op-output-cards').innerHTML=details.data.map(([k,v])=>outputCard(k,v)).join('');
+    $('op-worked').innerHTML='<ol class="de-step-list">'+details.steps.map(step=>`<li>${escapeHtml(step)}</li>`).join('')+'</ol>';
+    $('op-concept').innerHTML=`<p>${escapeHtml(details.concept)}</p>`;
+    renderOpSvg(activeOp,a,b,details.sum);
+    all('.de-op-tab').forEach(el=>el.setAttribute('aria-pressed',String(el.dataset.op===activeOp)));
+  }
+  all('.de-op-tab').forEach(b=>b.addEventListener('click',()=>{activeOp=b.dataset.op;updateOp();}));
+  ['op-a','op-b','carry-in'].forEach(id=>$(id)?.addEventListener('input',updateOp));
+  updateOp();
+
+  // Page 17: accessible hotspots and native selectable explanations.
+  const parts={
+    cpu:['CPU — central processing unit','Fetches, decodes and executes instructions. Its ALU computes arithmetic/logic and its control logic sequences operations.','Example: the CPU initiates a read of the instruction located at an address.'],
+    'cpu-interface':['CPU interface','Connects processor signals to the shared address, data and control buses. It may adapt timing, drive capacity or protocols.','Example: an address is driven onto address lines while control signals indicate a read.'],
+    address:['Address bus','Identifies the memory location or mapped I/O register being accessed. In a simple single-master design it is driven from the CPU toward the selected device.','Example: CPU outputs address 0x0010 to select a particular RAM location.'],
+    data:['Data bus','Carries information such as instructions, operands and results. During a read, data typically travels toward the processor; on a write it travels outward.','Example: RAM supplies an 8-bit value after an addressed read operation.'],
+    control:['Control bus','Transports transaction qualifiers and coordination such as read, write, chip select, ready, interrupt and reset. Signal directions vary.','Example: a read-enable signal instructs the selected memory to place data on the data bus.'],
+    eprom:['EPROM — nonvolatile memory','Stores programmed information even after power is removed. In an instructional computer, fixed instructions may be held in EPROM.','Example: boot firmware can be stored in a nonvolatile memory device.'],
+    ram:['RAM — working memory','Provides read/write storage for currently used data, stack, buffers and sometimes instructions. Ordinary SRAM/DRAM lose their contents when unpowered.','Example: a temporary count is loaded from RAM, updated and written back.'],
+    io:['I/O interface','Bridges system buses to external devices. It exposes registers for commands, status and data, and may provide timing and electrical adaptation.','Example: writing a control register turns a peripheral output on.'],
+    input:['Input peripheral','Introduces data from the outside world, often through switches, keys, sensors or communication links.','Example: pressing a key is encoded by input hardware and reported to software.'],
+    output:['Output peripheral','Displays, transmits or actuates values produced by the computer.','Example: an output controller updates a display pixel or drives an LED.']
+  };
+  function selectPart(key){
+    const entry=parts[key]; if(!entry||!$('architecture-detail'))return;
+    $('architecture-heading').textContent=entry[0];
+    $('architecture-explanation').textContent=entry[1];
+    $('architecture-example').textContent=entry[2];
+    all('.de-hotspot,.de-hotspot-chips button').forEach(btn=>btn.setAttribute('aria-pressed',String(btn.dataset.part===key)));
+  }
+  all('.de-hotspot,.de-hotspot-chips button').forEach(btn=>btn.addEventListener('click',()=>selectPart(btn.dataset.part)));
+  selectPart('cpu');
+})();
+
+</script><script defer=""  data-bundled-from="digital-electronics-native.js">
+/* ASIC-Skill Unit 01 native, selectable register/counter/divider learning charts */
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  if (!$('de-divider-wave')) return;
+  const buttons=[...document.querySelectorAll('[data-count-state]')];
+  let ticks=0;
+  function svgStep(periods, yHigh, yLow, stride, x0=112){
+    let path=`M${x0} ${yLow}`;
+    for(let i=0;i<periods;i++){
+      const left=x0+i*stride;
+      const high = (Math.floor(i/((yHigh===31)?1:2))%2)===1;
+      const y = high ? yHigh : yLow;
+      path+=` L${left} ${y} L${left+stride} ${y}`;
+    }
+    return path;
+  }
+  function render(){
+    const state=ticks%4;
+    buttons.forEach(btn=>btn.setAttribute('aria-pressed', String(Number(btn.dataset.countState)===state)));
+    const bits=[...$('shift-register').querySelectorAll('span')].map(x=>x.textContent);
+    const four=['stage-q3','stage-q2','stage-q1','stage-q0'];
+    four.forEach((id,i)=>{$(id).textContent=bits[i]??'0';});
+    $('de-count-inspection').textContent=`Live count: ${state} (${state.toString(2).padStart(2,'0')}). The next rising edge moves to ${(state+1)%4}. Select a state to inspect it.`;
+    // 8 rising edges, each period contains high then low. The divided output changes state every 2 rising edges.
+    const left=112, step=52;
+    let input=`M${left} 84`, output=`M${left} 187`;
+    for(let i=0;i<8;i++){
+      const x=left+step*i;
+      input+=` L${x} 84 L${x} 31 L${x+step/2} 31 L${x+step/2} 84 L${x+step} 84`;
+      const val=Math.floor(i/2)%2;
+      const currentY=val?134:187;
+      output+=` L${x} ${currentY} L${x+step} ${currentY}`;
+    }
+    $('de-input-clock-path').setAttribute('d',input);
+    $('de-output-clock-path').setAttribute('d',output);
+    // Marker shows current edge within a repeating 8-edge demonstration.
+    let marker=$('de-wave-marker');
+    if(!marker){marker=document.createElementNS('http://www.w3.org/2000/svg','line');marker.id='de-wave-marker';marker.setAttribute('y1','18');marker.setAttribute('y2','207');marker.setAttribute('stroke','#e87918');marker.setAttribute('stroke-width','2');marker.setAttribute('stroke-dasharray','4 4');$('de-divider-wave').appendChild(marker);}
+    const x=left+(ticks%8)*step;
+    marker.setAttribute('x1',x);marker.setAttribute('x2',x);
+    $('de-divider-note').textContent=`After ${ticks} rising edges: counter ${state.toString(2).padStart(2,'0')}; divide-by-4 output = ${(state>>1)&1}. Orange marker shows the current input edge.`;
+  }
+  $('step-clock')?.addEventListener('click',()=>{ticks++;render();});
+  $('reset-count')?.addEventListener('click',()=>{ticks=0;render();});
+  buttons.forEach(btn=>btn.addEventListener('click',()=>{
+    const state=Number(btn.dataset.countState);
+    $('de-count-inspection').textContent=`Selected state ${state} (${state.toString(2).padStart(2,'0')}): the next state is ${(state+1)%4}. Use Clock step above to run the actual counter.`;
+    buttons.forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.countState)===state)));
+  }));
+  render();
+})();
+
+</script><script defer=""  data-bundled-from="digital-electronics-cmos.js">
+/* ASIC-Skill Unit 01: CMOS inverter transfer characteristics (ideal logic model). */
+(() => {
+  'use strict';
+  const el = id => document.getElementById(id);
+  const toggle = el('cmos-toggle-input');
+  if (!toggle) return;
+  let input = 0;
+  function refresh() {
+    const pmOn = input === 0, out = 1 - input;
+    toggle.textContent = `Input A = ${input} · Set to ${out}`;
+    toggle.setAttribute('aria-pressed', String(input === 1));
+    el('cmos-input-state').textContent = input;
+    el('cmos-output-state').textContent = out;
+    el('cmos-svg-input').textContent = `A = ${input}`;
+    el('cmos-svg-output').textContent = `Y = ${out}`;
+    el('cmos-svg-p-status').textContent = pmOn ? 'ON' : 'OFF';
+    el('cmos-svg-n-status').textContent = pmOn ? 'OFF' : 'ON';
+    el('cmos-p-conduction').setAttribute('stroke',pmOn?'#0c8b64':'#99aab4');
+    el('cmos-p-conduction').setAttribute('opacity',pmOn?'1':'.35');
+    el('cmos-n-conduction').setAttribute('stroke',pmOn?'#99aab4':'#0c8b64');
+    el('cmos-n-conduction').setAttribute('opacity',pmOn?'.35':'1');
+    el('cmos-table-low').classList.toggle('de-cmos-selected', pmOn);
+    el('cmos-table-high').classList.toggle('de-cmos-selected', !pmOn);
+    el('cmos-conduction-explanation').innerHTML = pmOn
+      ? '<strong>A = 0:</strong> PMOS ON, NMOS OFF. The conducting pull-up connects Y to V<sub>DD</sub>, producing logic HIGH (Y = 1).'
+      : '<strong>A = 1:</strong> PMOS OFF, NMOS ON. The conducting pull-down connects Y to ground, producing logic LOW (Y = 0).';
+  }
+  toggle.addEventListener('click', () => { input = 1-input;refresh(); });
+  refresh();
+})();
+
+</script><script defer=""  data-bundled-from="digital-electronics-unit-switcher.js">
+/* Shared unit switcher for ASIC-Skill Digital Electronics. */
+(() => {
+  'use strict';
+  const select = document.getElementById('de-unit-switch');
+  if (!select) return;
+  select.addEventListener('change', () => {
+    const file = select.value;
+    // Use a fixed allowlist: no arbitrary redirect targets from markup.
+    if (file === 'digital-electronics.html' || file === 'digital-electronics-unit02.html' || file === 'digital-electronics-unit03.html' || file === 'digital-electronics-unit04.html' || file === 'digital-electronics-unit05.html' || file === 'digital-electronics-unit06.html' || file === 'digital-electronics-unit07.html' || file === 'digital-electronics-unit08.html' || file === 'digital-electronics-unit09.html' || file === 'digital-electronics-unit10.html' || file === 'digital-electronics-unit11.html' || file === 'digital-electronics-unit12.html' || file === 'digital-electronics-unit13.html' || file === 'digital-electronics-unit14.html' || file === 'digital-electronics-unit15.html' || file === 'digital-electronics-unit16.html' || file === 'digital-electronics-unit17.html' || file === 'digital-electronics-unit18.html' || file === 'digital-electronics-unit19.html') {
+      window.location.assign(file);
+    }
+  });
+})();
+
+</script></body></html>
